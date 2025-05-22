@@ -8,8 +8,14 @@ namespace MultiShop.Catalog.Services.ProductImageServices;
 
 public class ProductImageService : IProductImageService
 {
+    #region Fields
+
     private readonly IMapper _mapper;
     private readonly IMongoCollection<ProductImage> _productImageCollection;
+
+    #endregion
+
+    #region Ctor
 
     public ProductImageService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
@@ -19,6 +25,10 @@ public class ProductImageService : IProductImageService
         var database = client.GetDatabase(databaseSettings.DatabaseName);
         _productImageCollection = database.GetCollection<ProductImage>(databaseSettings.ProductImageCollectionName);
     }
+
+    #endregion
+
+    #region Methods
 
     public async Task CreateProductImageAsync(CreateProductImageDto createProductImageDto)
     {
@@ -52,4 +62,6 @@ public class ProductImageService : IProductImageService
 
         await _productImageCollection.FindOneAndReplaceAsync(x => x.ProductImageId == updateProductImageDto.ProductImageId, productImage);
     }
+
+    #endregion
 }

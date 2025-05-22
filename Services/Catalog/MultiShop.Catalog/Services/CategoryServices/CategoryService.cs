@@ -8,8 +8,14 @@ namespace MultiShop.Catalog.Services.CategoryServices;
 
 public class CategoryService : ICategoryService
 {
+    #region Fields
+
     private readonly IMapper _mapper;
     private readonly IMongoCollection<Category> _categoryCollection;
+
+    #endregion
+
+    #region Ctor
 
     public CategoryService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
@@ -20,11 +26,15 @@ public class CategoryService : ICategoryService
         _categoryCollection = database.GetCollection<Category>(databaseSettings.CategoryCollectionName);
     }
 
+    #endregion
+
+    #region Methods
+
     public async Task CreateCategoryAsync(CreateCategoryDto createCategoryDto)
     {
         var category = _mapper.Map<Category>(createCategoryDto);
 
-        await  _categoryCollection.InsertOneAsync(category);
+        await _categoryCollection.InsertOneAsync(category);
     }
 
     public async Task DeleteCategoryAsync(string id)
@@ -52,4 +62,6 @@ public class CategoryService : ICategoryService
 
         await _categoryCollection.FindOneAndReplaceAsync(x => x.CategoryId == updateCategoryDto.CategoryId, category);
     }
+
+    #endregion
 }

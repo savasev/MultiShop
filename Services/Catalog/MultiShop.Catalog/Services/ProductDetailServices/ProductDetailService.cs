@@ -8,8 +8,14 @@ namespace MultiShop.Catalog.Services.ProductDetailServices;
 
 public class ProductDetailService : IProductDetailService
 {
+    #region Fields
+
     private readonly IMapper _mapper;
     private readonly IMongoCollection<ProductDetail> _productDetailCollection;
+
+    #endregion
+
+    #region Ctor
 
     public ProductDetailService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
@@ -19,6 +25,10 @@ public class ProductDetailService : IProductDetailService
         var database = client.GetDatabase(databaseSettings.DatabaseName);
         _productDetailCollection = database.GetCollection<ProductDetail>(databaseSettings.ProductDetailCollectionName);
     }
+
+    #endregion
+
+    #region Methods
 
     public async Task CreateProductDetailAsync(CreateProductDetailDto createProductDetailDto)
     {
@@ -52,4 +62,6 @@ public class ProductDetailService : IProductDetailService
 
         await _productDetailCollection.FindOneAndReplaceAsync(x => x.ProductDetailId == updateProductDetailDto.ProductDetailId, productDetail);
     }
+
+    #endregion
 }
