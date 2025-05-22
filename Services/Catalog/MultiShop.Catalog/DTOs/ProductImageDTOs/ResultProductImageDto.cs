@@ -2,7 +2,7 @@
 
 public class ResultProductImageDto
 {
-    public int ProductImageId { get; set; }
+    public string ProductImageId { get; set; }
 
     public string ProductId { get; set; }
 

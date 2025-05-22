@@ -7,7 +7,7 @@ public class ProductImage
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public int ProductImageId { get; set; }
+    public string ProductImageId { get; set; }
 
     public string ProductId { get; set; }
 
