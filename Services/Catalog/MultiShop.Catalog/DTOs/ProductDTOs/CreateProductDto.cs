@@ -12,5 +12,5 @@ public class CreateProductDto
 
     public string ProductDescription { get; set; }
 
-    public int CategoryId { get; set; }
+    public string CategoryId { get; set; }
 }
