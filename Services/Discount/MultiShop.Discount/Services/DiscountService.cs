@@ -74,9 +74,21 @@ public class DiscountService : IDiscountService
         }
     }
 
-    public Task UpdateCouponAsync(UpdateCouponDto updateCouponDto)
+    public async Task UpdateCouponAsync(UpdateCouponDto updateCouponDto)
     {
-        throw new NotImplementedException();
+        var query = "UPDATE Coupons SET Code=@code, Rate=@rate, IsActive=@isActive, ValidDate=@validDate WHERE CouponId=@couponId";
+
+        var parameters = new DynamicParameters();
+        parameters.Add("@couponId", updateCouponDto.CouponId);
+        parameters.Add("@code", updateCouponDto.Code);
+        parameters.Add("@rate", updateCouponDto.Rate);
+        parameters.Add("@isActive", updateCouponDto.IsActive);
+        parameters.Add("@validDate", updateCouponDto.ValidDate);
+
+        using (var connection = _dapperContext.CreateConnection())
+        {
+            await connection.ExecuteAsync(query, parameters);
+        }
     }
 
     #endregion
