@@ -39,19 +39,39 @@ public class DiscountService : IDiscountService
         }
     }
 
-    public Task DeleteCouponAsync(int couponId)
+    public async Task DeleteCouponAsync(int couponId)
     {
-        throw new NotImplementedException();
+        var query = "DELETE FROM Coupons WHERE CouponId=@couponId";
+        var parameters = new DynamicParameters();
+        parameters.Add("couponId", couponId);
+
+        using (var connection = _dapperContext.CreateConnection())
+        {
+            await connection.ExecuteAsync(query, parameters);
+        }
     }
 
-    public Task<List<ResultCouponDto>> GetAllCouponsAsync()
+    public async Task<List<ResultCouponDto>> GetAllCouponsAsync()
     {
-        throw new NotImplementedException();
+        var query = "SELECT * FROM Coupons";
+
+        using (var connection = _dapperContext.CreateConnection())
+        {
+            var values = await connection.QueryAsync<ResultCouponDto>(query);
+            return values.ToList();
+        }
     }
 
-    public Task<GetByIdCouponDto> GetCouponByIdAsync(int couponId)
+    public async Task<GetByIdCouponDto> GetCouponByIdAsync(int couponId)
     {
-        throw new NotImplementedException();
+        var query = "SELECT * FROM Coupons WHERE CouponId=@couponId";
+        var parameters = new DynamicParameters();
+        parameters.Add("@couponId", couponId);
+
+        using (var connection = _dapperContext.CreateConnection())
+        {
+            return await connection.QueryFirstOrDefaultAsync<GetByIdCouponDto>(query);
+        }
     }
 
     public Task UpdateCouponAsync(UpdateCouponDto updateCouponDto)
