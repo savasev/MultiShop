@@ -1,3 +1,5 @@
+using MultiShop.Discount.Services;
+
 namespace MultiShop.Discount
 {
     public class Program
@@ -7,6 +9,7 @@ namespace MultiShop.Discount
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddScoped<IDiscountService, DiscountService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
