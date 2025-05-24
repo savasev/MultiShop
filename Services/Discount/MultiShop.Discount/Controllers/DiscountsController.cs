@@ -33,10 +33,10 @@ public class DiscountsController : ControllerBase
         return Ok(coupons);
     }
 
-    [HttpGet("{couponId}")]
-    public async Task<IActionResult> GetCouponById(int couponId)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetCouponById(int id)
     {
-        var coupon = await _discountService.GetCouponByIdAsync(couponId);
+        var coupon = await _discountService.GetCouponByIdAsync(id);
 
         return Ok(coupon);
     }

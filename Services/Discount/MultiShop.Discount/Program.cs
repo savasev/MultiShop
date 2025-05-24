@@ -1,3 +1,4 @@
+using MultiShop.Discount.Context;
 using MultiShop.Discount.Services;
 
 namespace MultiShop.Discount
@@ -9,6 +10,7 @@ namespace MultiShop.Discount
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddTransient<DapperContext>();
             builder.Services.AddScoped<IDiscountService, DiscountService>();
 
             builder.Services.AddControllers();

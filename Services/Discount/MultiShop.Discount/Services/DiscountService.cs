@@ -70,7 +70,7 @@ public class DiscountService : IDiscountService
 
         using (var connection = _dapperContext.CreateConnection())
         {
-            return await connection.QueryFirstOrDefaultAsync<GetByIdCouponDto>(query);
+            return await connection.QueryFirstOrDefaultAsync<GetByIdCouponDto>(query, parameters);
         }
     }
 
