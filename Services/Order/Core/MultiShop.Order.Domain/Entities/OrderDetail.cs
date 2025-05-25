@@ -16,5 +16,5 @@ public class OrderDetail
 
     public int OrderingId { get; set; }
 
-
+    public Ordering Ordering { get; set; }
 }
