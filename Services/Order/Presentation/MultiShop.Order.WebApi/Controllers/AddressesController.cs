@@ -39,7 +39,7 @@ public class AddressesController : ControllerBase
     #region Methods
 
     [HttpGet]
-    public async Task<IActionResult> AddressList()
+    public async Task<IActionResult> GetAddressList()
     {
         var addresses = await _getAddressQueryHandler.Handle();
 
@@ -47,7 +47,7 @@ public class AddressesController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> AddressListById(int id)
+    public async Task<IActionResult> GetAddressListById(int id)
     {
         var address = await _getAddressByIdQueryHandler.Handle(new GetAddressByIdQuery(id));
 

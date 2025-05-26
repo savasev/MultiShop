@@ -1,4 +1,4 @@
-﻿using MultiShop.Order.Application.Features.CQRS.Commands.AddressCommands;
+﻿using MultiShop.Order.Application.Features.CQRS.Commands.OrderDetailCommands;
 using MultiShop.Order.Application.Interfaces;
 using MultiShop.Order.Domain.Entities;
 
@@ -23,9 +23,9 @@ public class RemoveOrderDetailCommandHandler
 
     #region Methods
 
-    public async Task Handle(RemoveAddressCommand removeAddressCommand)
+    public async Task Handle(RemoveOrderDetailCommand removeAddressCommand)
     {
-        var orderDetail = await _orderDetailRepository.GetByIdAsync(removeAddressCommand.AddressId);
+        var orderDetail = await _orderDetailRepository.GetByIdAsync(removeAddressCommand.OrderDetailId);
 
         await _orderDetailRepository.DeleteAsync(orderDetail);
     }
