@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\CQRS\Queries\AddressQueries\" />
     <Folder Include="Features\Mediator\" />
   </ItemGroup>
 
