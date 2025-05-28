@@ -1,5 +1,7 @@
 using MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 using MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandler;
+using MultiShop.Order.Application.Interfaces;
+using MultiShop.Order.Application.Services;
 
 namespace MultiShop.Order.WebApi
 {
@@ -10,6 +12,12 @@ namespace MultiShop.Order.WebApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(IRepository<>));
+            builder.Services.AddApplicationService(builder.Configuration);
+
+            #region Handlers
+
             builder.Services.AddScoped<GetAddressQueryHandler>();
             builder.Services.AddScoped<GetAddressByIdQueryHandler>();
             builder.Services.AddScoped<CreateAddressCommandHandler>();
@@ -21,6 +29,8 @@ namespace MultiShop.Order.WebApi
             builder.Services.AddScoped<CreateOrderDetailCommandHandler>();
             builder.Services.AddScoped<UpdateOrderDetailCommandHandler>();
             builder.Services.AddScoped<RemoveOrderDetailCommandHandler>();
+
+            #endregion
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
