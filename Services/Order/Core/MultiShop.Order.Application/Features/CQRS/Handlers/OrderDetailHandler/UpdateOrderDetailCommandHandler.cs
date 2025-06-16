@@ -25,16 +25,16 @@ public class UpdateOrderDetailCommandHandler
 
     public async Task Handle(UpdateOrderDetailCommand command)
     {
-        await _orderDetailRepository.UpdateAsync(new OrderDetail
-        {
-            OrderDetailId = command.OrderDetailId,
-            OrderingId = command.OrderingId,
-            ProductId = command.ProductId,
-            ProductAmount = command.ProductAmount,
-            ProductName = command.ProductName,
-            ProductPrice = command.ProductPrice,
-            ProductTotalPrice = command.ProductTotalPrice,
-        });
+        var orderDetail = await _orderDetailRepository.GetByIdAsync(command.OrderDetailId);
+
+        orderDetail.OrderingId = command.OrderingId;
+        orderDetail.ProductId = command.ProductId;
+        orderDetail.ProductAmount = command.ProductAmount;
+        orderDetail.ProductName = command.ProductName;
+        orderDetail.ProductPrice = command.ProductPrice;
+        orderDetail.ProductTotalPrice = command.ProductTotalPrice;
+
+        await _orderDetailRepository.UpdateAsync(orderDetail);
     }
 
     #endregion
