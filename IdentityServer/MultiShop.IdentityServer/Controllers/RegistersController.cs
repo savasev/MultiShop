@@ -27,7 +27,7 @@ namespace MultiShop.IdentityServer.Controllers
         #region Methods
 
         [HttpPost]
-        public async Task<IActionResult> UserRegister(UserRegisterDto userRegisterDto)
+        public async Task<IActionResult> UserRegister([FromBody] UserRegisterDto userRegisterDto)
         {
             var applicationUser = new ApplicationUser
             {
