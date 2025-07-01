@@ -9,11 +9,11 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
-    opt.Authority = builder.Configuration["IdentityServerUrl"];
-    opt.Audience = "ResourceCatalog";
-    opt.RequireHttpsMetadata = false;
+    options.Authority = builder.Configuration["IdentityServerUrl"];
+    options.Audience = "ResourceCatalog";
+    options.RequireHttpsMetadata = false;
 });
 
 // Add services to the container.
