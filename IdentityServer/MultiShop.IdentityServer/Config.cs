@@ -52,7 +52,7 @@ namespace MultiShop.IdentityServer
                 ClientName = "Multi Shop Visitor User",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 ClientSecrets = { new Secret("multishopsecret".Sha256()) },
-                AllowedScopes = { "CatalogReadPermission" },
+                AllowedScopes = { "DiscountFullPermission" },
             },
             //Manager
             new Client
@@ -75,7 +75,7 @@ namespace MultiShop.IdentityServer
                     "CatalogReadPermission",
                     "DiscountFullPermission",
                     "OrderFullPermission",
-                    IdentityServerConstants.LocalApi.ScopeName,
+                    //IdentityServerConstants.LocalApi.ScopeName,
                     IdentityServerConstants.StandardScopes.Email,
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
