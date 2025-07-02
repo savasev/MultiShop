@@ -18,7 +18,7 @@ public class DapperContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=ASUS-ROGS-Z590A;Initial Catalog=MultiShopDiscountDb;Integrated Security=true");
+        optionsBuilder.UseSqlServer(_connectionString);
     }
 
     public DbSet<Coupon> Coupons { get; set; }
