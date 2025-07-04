@@ -8,7 +8,7 @@ public interface IGenericDal<T> where T : class
 
     Task DeleteAsync(int id);
 
-    T GetByIdAsync(int id);
+    Task<T> GetByIdAsync(int id);
 
     Task<List<T>> GetAllAsync();
 }
