@@ -56,7 +56,7 @@ public class CargoCustomersController : ControllerBase
             Surname = createCargoCustomerDto.Surname,
         });
 
-        return Ok("Kargo şirketi başarıyla oluşturuldu");
+        return Ok("Kargo müşteri başarıyla oluşturuldu");
     }
 
     [HttpPut]
@@ -74,14 +74,14 @@ public class CargoCustomersController : ControllerBase
             Surname = updateCargoCustomerDto.Surname,
         });
 
-        return Ok("Kargo şirketi başarıyla güncellendi.");
+        return Ok("Kargo müşteri başarıyla güncellendi.");
     }
 
     public async Task<IActionResult> RemoveCargoCustomer(int id)
     {
         await _cargoCustomerService.DeleteAsync(id);
 
-        return Ok("Kargo şirketi başarıyla silindi");
+        return Ok("Kargo müşteri başarıyla silindi");
     }
 
     #endregion
