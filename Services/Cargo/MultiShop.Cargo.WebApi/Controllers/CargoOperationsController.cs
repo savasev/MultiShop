@@ -52,7 +52,7 @@ public class CargoOperationsController : ControllerBase
             OperationDate = createCargoOperationDto.OperationDate,
         });
 
-        return Ok("Kargo detayı başarıyla oluşturuldu");
+        return Ok("Kargo işlemi başarıyla oluşturuldu");
     }
 
     [HttpPut]
@@ -66,14 +66,14 @@ public class CargoOperationsController : ControllerBase
             OperationDate = updateCargoOperationDto.OperationDate,
         });
 
-        return Ok("Kargo detayı başarıyla güncellendi.");
+        return Ok("Kargo işlemi başarıyla güncellendi.");
     }
 
     public async Task<IActionResult> RemoveCargoOperation(int id)
     {
         await _cargoOperationService.DeleteAsync(id);
 
-        return Ok("Kargo detayı başarıyla silindi");
+        return Ok("Kargo işlemi başarıyla silindi");
     }
 
     #endregion
