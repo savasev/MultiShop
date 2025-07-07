@@ -1,4 +1,30 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using MultiShop.Cargo.BusinessLayer.Abstract;
+using MultiShop.Cargo.BusinessLayer.Concrete;
+using MultiShop.Cargo.DataAccessLayer.Abstract;
+using MultiShop.Cargo.DataAccessLayer.Concrete;
+using MultiShop.Cargo.DataAccessLayer.EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<CargoContext>();
+
+builder.Services.AddScoped<ICargoCompanyDal, EfCargoCompanyDal>();
+builder.Services.AddScoped<ICargoCustomerDal, EfCargoCustomerDal>();
+builder.Services.AddScoped<ICargoDetailDal, EfCargoDetailDal>();
+builder.Services.AddScoped<ICargoOperationDal, EfCargoOperationDal>();
+
+builder.Services.AddScoped<ICargoCompanyService, CargoCompanyManager>();
+builder.Services.AddScoped<ICargoCustomerService, CargoCustomerManager>();
+builder.Services.AddScoped<ICargoDetailService, CargoDetailManager>();
+builder.Services.AddScoped<ICargoOperationService, CargoOperationManager>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.Authority = builder.Configuration["IdentityServerUrl"];
+    options.Audience = "ResourceCargo";
+    options.RequireHttpsMetadata = false;
+});
 
 // Add services to the container.
 
@@ -17,6 +43,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
