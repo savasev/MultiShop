@@ -19,12 +19,12 @@ builder.Services.AddScoped<ICargoCustomerService, CargoCustomerManager>();
 builder.Services.AddScoped<ICargoDetailService, CargoDetailManager>();
 builder.Services.AddScoped<ICargoOperationService, CargoOperationManager>();
 
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-//{
-//    options.Authority = builder.Configuration["IdentityServerUrl"];
-//    options.Audience = "ResourceCargo";
-//    options.RequireHttpsMetadata = false;
-//});
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.Authority = builder.Configuration["IdentityServerUrl"];
+    options.Audience = "ResourceCargo";
+    options.RequireHttpsMetadata = false;
+});
 
 // Add services to the container.
 
@@ -44,7 +44,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseAuthentication();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
