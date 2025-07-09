@@ -40,7 +40,7 @@ public class CargoCompanyManager : ICargoCompanyService
 
     public async Task InsertAsync(CargoCompany entity)
     {
-        await InsertAsync(entity);
+        await _cargoCompanyDal.InsertAsync(entity);
     }
 
     public async Task UpdateAsync(CargoCompany entity)
