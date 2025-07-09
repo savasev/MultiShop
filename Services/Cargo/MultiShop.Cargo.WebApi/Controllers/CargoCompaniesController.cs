@@ -65,6 +65,7 @@ public class CargoCompaniesController : ControllerBase
         return Ok("Kargo şirketi başarıyla güncellendi.");
     }
 
+    [HttpDelete]
     public async Task<IActionResult> RemoveCargoCompany(int id)
     {
         await _cargoCompanyService.DeleteAsync(id);

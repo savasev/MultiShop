@@ -71,6 +71,7 @@ public class CargoDetailsController : ControllerBase
         return Ok("Kargo detayı başarıyla güncellendi.");
     }
 
+    [HttpDelete]
     public async Task<IActionResult> RemoveCargoDetail(int id)
     {
         await _cargoDetailService.DeleteAsync(id);
