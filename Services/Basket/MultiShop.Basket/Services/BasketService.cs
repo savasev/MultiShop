@@ -25,21 +25,18 @@ public class BasketService : IBasketService
 
     public async Task DeleteBasketAsync(string userId)
     {
-        var status = await _redisService.GetDb().KeyDeleteAsync(userId);
-
-
+        await _redisService.GetDb().KeyDeleteAsync(userId);
     }
 
     public async Task<BasketTotalDto> GetBasketAsync(string userId)
     {
         var basketTotal = await _redisService.GetDb().StringGetAsync(userId);
-
         return JsonSerializer.Deserialize<BasketTotalDto>(basketTotal);
     }
 
-    public Task<bool> SaveBasketAsync(BasketTotalDto basket)
+    public async Task SaveBasketAsync(BasketTotalDto basketTotalDto)
     {
-        throw new NotImplementedException();
+        await _redisService.GetDb().StringSetAsync(basketTotalDto.UserId, JsonSerializer.Serialize(basketTotalDto));
     }
 
     #endregion

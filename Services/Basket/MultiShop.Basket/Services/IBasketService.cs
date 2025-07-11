@@ -6,7 +6,7 @@ public interface IBasketService
 {
     Task<BasketTotalDto> GetBasketAsync(string userId);
 
-    Task<bool> SaveBasketAsync(BasketTotalDto basket);
+    Task SaveBasketAsync(BasketTotalDto basket);
 
     Task DeleteBasketAsync(string userId);
 }
