@@ -30,7 +30,7 @@ public class BasketsController : ControllerBase
     #region Methods
 
     [HttpGet]
-    public async Task<IActionResult> GetBasket()
+    public async Task<IActionResult> GetBasketDetail()
     {
         var values = await _basketService.GetBasketAsync(_loginService.GetUserId);
         return Ok(values);
