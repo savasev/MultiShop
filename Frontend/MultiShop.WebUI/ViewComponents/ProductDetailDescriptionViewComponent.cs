@@ -2,7 +2,7 @@
 
 namespace MultiShop.WebUI.ViewComponents;
 
-public class ProductDetailsFeaturedProductsViewComponent : ViewComponent
+public class ProductDetailDescriptionViewComponent : ViewComponent
 {
     #region Methods
 
