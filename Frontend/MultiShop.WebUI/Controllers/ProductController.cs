@@ -16,5 +16,10 @@ public class ProductController : Controller
         return View();
     }
 
+    public IActionResult ProductDetails()
+    {
+        return View();
+    }
+
     #endregion
 }
