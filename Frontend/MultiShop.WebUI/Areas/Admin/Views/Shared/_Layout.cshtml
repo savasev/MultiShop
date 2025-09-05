@@ -4,7 +4,7 @@
     @await Html.PartialAsync("Partials/_Head")
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-
+    
     <div class="wrapper">
         @await Html.PartialAsync("Partials/_Navbar")
         @await Html.PartialAsync("Partials/_MainSidebar")
@@ -12,7 +12,6 @@
             @RenderBody()
         </div>
         @await Html.PartialAsync("Partials/_MainFooter")
-        @await Html.PartialAsync("Partials/_ControlSidebar")
     </div>
 
     @await Html.PartialAsync("Partials/_Script")
