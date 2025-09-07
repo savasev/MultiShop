@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Runtime.Intrinsics.Arm;
 using System.Threading.Tasks;
 
@@ -32,10 +33,13 @@ public class CategoryController : BaseAdminController
     {
         var client = _httpClientFactory.CreateClient();
 
-        var response = await client.GetAsync("http://localhost:7070/api/categories");
+        var response = await client.GetAsync("https://localhost:7070/api/categories");
 
-
-
+        if (response.IsSuccessStatusCode)
+        {
+            var jsonData = await response.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<string>>(jsonData);
+        }
 
         return View();
     }
