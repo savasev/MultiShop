@@ -37,7 +37,6 @@ public class CategoryController : BaseAdminController
     }
 
     [HttpPost]
-    [AllowAnonymous]
     public async Task<IActionResult> CategoryList()
     {
         var client = _httpClientFactory.CreateClient();
@@ -51,6 +50,11 @@ public class CategoryController : BaseAdminController
         var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
 
         return Json(new { data = categories });
+    }
+
+    public IActionResult Create()
+    {
+        return View();
     }
 
     #endregion
