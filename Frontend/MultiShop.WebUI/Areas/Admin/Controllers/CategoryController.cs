@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
 using Newtonsoft.Json;
 using System.Runtime.Intrinsics.Arm;
@@ -30,19 +31,26 @@ public class CategoryController : BaseAdminController
         return RedirectToAction("List");
     }
 
-    public async Task<IActionResult> List()
+    public IActionResult List()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [AllowAnonymous]
+    public async Task<IActionResult> CategoryList()
     {
         var client = _httpClientFactory.CreateClient();
 
         var response = await client.GetAsync("https://localhost:7070/api/categories");
 
-        if (response.IsSuccessStatusCode)
-        {
-            var jsonData = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
-        }
+        if (!response.IsSuccessStatusCode)
+            return Json(new { data = new List<ResultCategoryDto>() });
 
-        return View();
+        var jsonData = await response.Content.ReadAsStringAsync();
+        var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+
+        return Json(new { data = categories });
     }
 
     #endregion

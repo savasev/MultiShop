@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     @await Html.PartialAsync("Partials/_Head")
+
+    @RenderSection("styles", required: false)
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     
@@ -15,5 +17,7 @@
     </div>
 
     @await Html.PartialAsync("Partials/_Script")
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>
