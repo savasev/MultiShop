@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
 using Newtonsoft.Json;
 using System.Runtime.Intrinsics.Arm;
 using System.Threading.Tasks;
@@ -38,7 +39,7 @@ public class CategoryController : BaseAdminController
         if (response.IsSuccessStatusCode)
         {
             var jsonData = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<string>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
         }
 
         return View();
