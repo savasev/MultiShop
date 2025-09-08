@@ -59,6 +59,8 @@ public class CategoryController : BaseAdminController
 
     public async Task<IActionResult> Create(CreateCategoryDto categoryDto)
     {
+
+
         return RedirectToAction("List");
     }
 
