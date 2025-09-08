@@ -54,7 +54,12 @@ public class CategoryController : BaseAdminController
 
     public IActionResult Create()
     {
-        return View();
+        return View(new CreateCategoryDto());
+    }
+
+    public async Task<IActionResult> Create(CreateCategoryDto categoryDto)
+    {
+        return RedirectToAction("List");
     }
 
     #endregion
