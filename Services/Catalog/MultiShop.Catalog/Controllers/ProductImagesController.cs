@@ -59,7 +59,7 @@ public class ProductImagesController : ControllerBase
         return Ok("Ürün görseli başarıyla güncellendi.");
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProductImage(string id)
     {
         await _productImageService.DeleteProductImageAsync(id);

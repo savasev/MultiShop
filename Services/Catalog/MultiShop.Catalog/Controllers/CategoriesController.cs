@@ -59,7 +59,7 @@ public class CategoriesController : ControllerBase
         return Ok("Kategori başarıyla güncellendi.");
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCategory(string id)
     {
         await _categoryService.DeleteCategoryAsync(id);

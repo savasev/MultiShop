@@ -1,13 +1,13 @@
-﻿@model CreateCategoryDto
+﻿@model EditCategoryDto
 @{
-    ViewBag.PageTitle = "Yeni Kategori";
+    ViewBag.PageTitle = "Kategori Düzenle";
 }
 
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h2 class="m-0">Yeni Kategori</h2>
+                <h2 class="m-0">Kategori Düzenle</h2>
             </div>
             <div class="col-sm-6">
                 <a class="btn btn-primary float-right" asp-action="List">Tüm kategoriler</a>
@@ -22,12 +22,13 @@
             <div class="col-12">
                 <div class="card card-danger card-outline">
                     <div class="card-header with-border clearfix">
-                        <h3 class="card-title">Yeni Kategori</h3>
+                        <h3 class="card-title">Kategori Düzenle</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-11 offset-1">
-                                <form class="form-horizontal" asp-action="Create" method="post">
+                                <form class="form-horizontal" asp-action="Edit" method="post">
+                                    <input asp-for="CategoryId" type="hidden">
                                     <div class="form-group row">
                                         <label asp-for="CategoryName" class="col-sm-2 col-form-label">Kategori Adı</label>
                                         <div class="col-sm-4">

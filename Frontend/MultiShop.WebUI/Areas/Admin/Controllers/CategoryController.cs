@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
 using Newtonsoft.Json;
-using System.Runtime.Intrinsics.Arm;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers;
 
@@ -57,11 +55,48 @@ public class CategoryController : BaseAdminController
         return View(new CreateCategoryDto());
     }
 
-    public async Task<IActionResult> Create(CreateCategoryDto categoryDto)
+    [HttpPost]
+    public async Task<IActionResult> Create(CreateCategoryDto createCategoryDto)
     {
+        var client = _httpClientFactory.CreateClient();
+        var jsonData = JsonConvert.SerializeObject(createCategoryDto);
+        var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
+        var responseMessage = await client.PostAsync("https://localhost:7070/api/categories", stringContent);
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            return RedirectToAction("List");
+        }
 
-        return RedirectToAction("List");
+        return View(createCategoryDto);
+    }
+
+    public async Task<IActionResult> Edit(string id)
+    {
+        var client = _httpClientFactory.CreateClient();
+
+        var response = await client.GetAsync($"https://localhost:7070/api/categories/{id}");
+
+        if (!response.IsSuccessStatusCode)
+            return RedirectToAction("List");
+
+        var jsonData = await response.Content.ReadAsStringAsync();
+        var editCategoryDto = JsonConvert.DeserializeObject<EditCategoryDto>(jsonData);
+
+        return View(editCategoryDto);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var client = _httpClientFactory.CreateClient();
+
+        var responseMessage = await client.DeleteAsync($"https://localhost:7070/api/categories/{id}");
+
+        if (responseMessage.IsSuccessStatusCode)
+            return Json(new { success = true });
+
+        return Json(new { success = false });
     }
 
     #endregion

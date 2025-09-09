@@ -59,7 +59,7 @@ public class ProductDetailsController : ControllerBase
         return Ok("Ürün detayı başarıyla güncellendi.");
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProductDetail(string id)
     {
         await _productDetailService.DeleteProductDetailAsync(id);
