@@ -63,6 +63,7 @@ public class CategoryController : BaseAdminController
         var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
         var responseMessage = await client.PostAsync("https://localhost:7070/api/categories", stringContent);
+
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("List");
@@ -84,6 +85,20 @@ public class CategoryController : BaseAdminController
         var editCategoryDto = JsonConvert.DeserializeObject<EditCategoryDto>(jsonData);
 
         return View(editCategoryDto);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(EditCategoryDto editCategoryDto)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var jsonData = JsonConvert.SerializeObject(editCategoryDto);
+        var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+        var responseMessage = await client.PutAsync($"https://localhost:7070/api/categories/{stringContent}");
+
+        if (responseMessage.IsSuccessStatusCode)
+        {
+        }
     }
 
     [HttpPost]
