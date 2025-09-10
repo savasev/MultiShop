@@ -29,7 +29,9 @@
                                 <tr>
                                     <th class="text-center">#</th>
                                     <th>Ürün Adı</th>
-                                    <th>İşlem</th>
+                                    <th class="text-center">Ürün Fiyat</th>
+                                    <th class="text-center">Stok</th>
+                                    <th class="text-center">İşlem</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -50,7 +52,51 @@
 
     <script>
         $(function() {
-            
+            $('#products-grid').DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                searching: false,
+                ordering: false,
+                ajax: {
+                    url: '/Admin/Product/ProductList',
+                    type: 'POST',
+                },
+                columns: [
+                    {
+                        data: null,
+                        width: '5%',
+                        className: 'text-center',
+                        render: function(data, type, row, meta) {
+                            return meta.row + 1;
+                        }
+                    },
+                    {
+                        data: 'productName',
+                    },
+                    {
+                        data: 'productPrice',
+                        width: '10%',
+                        className: 'text-center',
+                    },
+                    {
+                        data: 'productStock',
+                        width: '10%',
+                        className: 'text-center',
+                    },
+                    {
+                        data: 'productId',
+                        render: function(data, type, row) {
+                            return `
+                                <a class="btn btn-outline-primary btn-sm edit-btn mr-1" href="/Admin/Product/Edit/${data}">Düzenle</a>
+                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="${data}">Sil</button>
+                            `;
+                        },
+                        width: '15%',
+                        className: 'text-center'
+                    }
+                ],
+            });
         });
     </script>
 }
