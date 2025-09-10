@@ -2,5 +2,9 @@
 
 public class CreateCategoryDto
 {
+    #region Properties
+
     public string CategoryName { get; set; }
+
+    #endregion
 }

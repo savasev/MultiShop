@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MultiShop.DtoLayer.CatalogDtos.ProductDtos;
+using Newtonsoft.Json;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers;
 
@@ -31,7 +33,21 @@ public class ProductController : BaseAdminController
         return View();
     }
 
+    [HttpPost]
+    public async Task<IActionResult> ProductList()
+    {
+        var client = _httpClientFactory.CreateClient();
 
+        var response = await client.GetAsync("https://localhost:7070/api/products");
+
+        if (!response.IsSuccessStatusCode)
+            return Json(new { data = new List<ResultProductDto>() });
+
+        var jsonData = await response.Content.ReadAsStringAsync();
+        var products = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+
+        return Json(new { data = products });
+    }
 
     #endregion
 }
