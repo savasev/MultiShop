@@ -94,11 +94,17 @@ public class CategoryController : BaseAdminController
         var jsonData = JsonConvert.SerializeObject(editCategoryDto);
         var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-        var responseMessage = await client.PutAsync($"https://localhost:7070/api/categories/{stringContent}");
+        var responseMessage = await client.PutAsync("https://localhost:7070/api/categories", stringContent);
 
         if (responseMessage.IsSuccessStatusCode)
         {
+            return RedirectToAction("List");
         }
+
+        var errorMessage = await responseMessage.Content.ReadAsStringAsync();
+        ModelState.AddModelError("", errorMessage);
+
+        return View(editCategoryDto);
     }
 
     [HttpPost]
