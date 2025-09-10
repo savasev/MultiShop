@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.DTOs.CategoryDTOs;
 using MultiShop.Catalog.Services.CategoryServices;
 
 namespace MultiShop.Catalog.Controllers;
 
-[Authorize]
-[Route("api/[controller]")]
-[ApiController]
-public class CategoriesController : ControllerBase
+public class CategoriesController : BaseApiController
 {
     #region Fields
 

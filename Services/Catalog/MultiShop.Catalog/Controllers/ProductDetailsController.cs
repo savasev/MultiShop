@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.DTOs.ProductDetailDTOs;
 using MultiShop.Catalog.Services.ProductDetailServices;
 
 namespace MultiShop.Catalog.Controllers;
 
-[Authorize]
-[Route("api/[controller]")]
-[ApiController]
-public class ProductDetailsController : ControllerBase
+public class ProductDetailsController : BaseApiController
 {
     #region Fields
 

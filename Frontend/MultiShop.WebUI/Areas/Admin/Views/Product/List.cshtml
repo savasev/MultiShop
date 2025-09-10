@@ -28,6 +28,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">#</th>
+                                    <th class="text-center">Ürün Resmi</th>
                                     <th>Ürün Adı</th>
                                     <th class="text-center">Ürün Fiyat</th>
                                     <th class="text-center">Stok</th>
@@ -72,6 +73,14 @@
                         }
                     },
                     {
+                        data: 'productImageUrl',
+                        width: '20%',
+                        className: 'text-center',
+                        render: function(data, type, row, meta) {
+                            return `<img src="${data}" class="img-fluid">`;
+                        }
+                    },
+                    {
                         data: 'productName',
                     },
                     {
@@ -86,7 +95,7 @@
                     },
                     {
                         data: 'productId',
-                        render: function(data, type, row) {
+                        render: function(data, type, row, meta) {
                             return `
                                 <a class="btn btn-outline-primary btn-sm edit-btn mr-1" href="/Admin/Product/Edit/${data}">Düzenle</a>
                                 <button class="btn btn-outline-danger btn-sm delete-btn" data-id="${data}">Sil</button>
