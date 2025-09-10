@@ -49,5 +49,10 @@ public class ProductController : BaseAdminController
         return Json(new { data = products });
     }
 
+    public IActionResult Create()
+    {
+        return View(new CreateProductDto());
+    }
+
     #endregion
 }
