@@ -14,5 +14,7 @@ public class CreateProductDto
 
     public string ProductDescription { get; set; }
 
+    public string CategoryId { get; set; }
+
     #endregion
 }
