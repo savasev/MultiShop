@@ -4,15 +4,6 @@ namespace MultiShop.DtoLayer.CatalogDtos.ProductDtos;
 
 public class EditProductDto
 {
-    #region Ctor
-
-    public EditProductDto()
-    {
-        AvailableCategories = new List<SelectListItem>();
-    }
-
-    #endregion
-
     #region Properties
 
     public string ProductId { get; set; }
@@ -29,7 +20,7 @@ public class EditProductDto
 
     public string CategoryId { get; set; }
 
-    public List<SelectListItem> AvailableCategories { get; set; }
+    public IList<SelectListItem> AvailableCategories { get; set; }
 
     #endregion
 }

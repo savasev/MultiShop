@@ -26,10 +26,10 @@ public class ProductController : BaseAdminController
 
     #region Utilities
 
-    private async Task PrepareAvailableCategoriesAsync(IList<SelectListItem> items)
+    private async Task<IList<SelectListItem>> GetAvailableCategoriesAsync()
     {
+        var items = new List<SelectListItem>();
         var client = _httpClientFactory.CreateClient();
-
         var response = await client.GetAsync("https://localhost:7070/api/categories");
 
         if (response.IsSuccessStatusCode)
@@ -38,14 +38,16 @@ public class ProductController : BaseAdminController
             var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
 
             items = (from c in categories
-                                   select new SelectListItem
-                                   {
-                                       Text = c.CategoryName,
-                                       Value = c.CategoryId
-                                   }).ToList();
+                     select new SelectListItem
+                     {
+                         Text = c.CategoryName,
+                         Value = c.CategoryId
+                     }).ToList();
         }
 
         items.Insert(0, new SelectListItem { Value = "", Text = "Select Category" });
+
+        return items;
     }
 
     #endregion
@@ -88,7 +90,7 @@ public class ProductController : BaseAdminController
     {
         var createProductDto = new CreateProductDto();
 
-        await PrepareAvailableCategoriesAsync(createProductDto.AvailableCategories);
+        createProductDto.AvailableCategories = await GetAvailableCategoriesAsync();
 
         return View(createProductDto);
     }
@@ -107,7 +109,7 @@ public class ProductController : BaseAdminController
             return RedirectToAction("List");
         }
 
-        await PrepareAvailableCategoriesAsync(createProductDto.AvailableCategories);
+        createProductDto.AvailableCategories = await GetAvailableCategoriesAsync();
 
         return View(createProductDto);
     }
@@ -119,7 +121,6 @@ public class ProductController : BaseAdminController
     public async Task<IActionResult> Edit(string id)
     {
         var client = _httpClientFactory.CreateClient();
-
         var response = await client.GetAsync($"https://localhost:7070/api/products/{id}");
 
         if (!response.IsSuccessStatusCode)
@@ -128,7 +129,7 @@ public class ProductController : BaseAdminController
         var jsonData = await response.Content.ReadAsStringAsync();
         var editProductDto = JsonConvert.DeserializeObject<EditProductDto>(jsonData);
 
-        await PrepareAvailableCategoriesAsync(editProductDto.AvailableCategories);
+        editProductDto.AvailableCategories = await GetAvailableCategoriesAsync();
 
         return View(editProductDto);
     }
@@ -141,7 +142,7 @@ public class ProductController : BaseAdminController
         var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
         var responseMessage = await client.PutAsync("https://localhost:7070/api/products", stringContent);
-
+        
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("List");
@@ -150,7 +151,7 @@ public class ProductController : BaseAdminController
         var errorMessage = await responseMessage.Content.ReadAsStringAsync();
         ModelState.AddModelError("", errorMessage);
 
-        await PrepareAvailableCategoriesAsync(editProductDto.AvailableCategories);
+        editProductDto.AvailableCategories = await GetAvailableCategoriesAsync();
 
         return View(editProductDto);
     }
