@@ -103,7 +103,7 @@
                         $.ajax({
                             url: '/Admin/Category/Delete/' + id,
                             type: 'POST',
-                            success: function () {
+                            success: function (res) {
                                 if (res.success) {
                                     $(document).Toasts('create', {
                                         class: 'bg-success',
