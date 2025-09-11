@@ -72,6 +72,8 @@ public class ProductController : BaseAdminController
                                    }).ToList();
         }
 
+        availableCategories.Insert(0, new SelectListItem { Value = "", Text = "Select Category" });
+
         return View(new CreateProductDto
         {
             AvailableCategories = availableCategories
