@@ -1,4 +1,6 @@
-﻿namespace MultiShop.DtoLayer.CatalogDtos.ProductDtos;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace MultiShop.DtoLayer.CatalogDtos.ProductDtos;
 
 public class CreateProductDto
 {
@@ -15,6 +17,8 @@ public class CreateProductDto
     public string ProductDescription { get; set; }
 
     public string CategoryId { get; set; }
+
+    public List<SelectListItem> AvailableCategories { get; set; }
 
     #endregion
 }

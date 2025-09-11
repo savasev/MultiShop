@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
 using MultiShop.DtoLayer.CatalogDtos.ProductDtos;
 using Newtonsoft.Json;
 
@@ -49,9 +51,31 @@ public class ProductController : BaseAdminController
         return Json(new { data = products });
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
-        return View(new CreateProductDto());
+        var availableCategories = new List<SelectListItem>();
+
+        var client = _httpClientFactory.CreateClient();
+
+        var response = await client.GetAsync("https://localhost:7070/api/categories");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var jsonData = await response.Content.ReadAsStringAsync();
+            var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+
+            availableCategories = (from c in categories
+                                   select new SelectListItem
+                                   {
+                                       Text = c.CategoryName,
+                                       Value = c.CategoryId
+                                   }).ToList();
+        }
+
+        return View(new CreateProductDto
+        {
+            AvailableCategories = availableCategories
+        });
     }
 
     #endregion
