@@ -1,6 +1,6 @@
-﻿@model CreateProductDto
+﻿@model EditProductDto
 @{
-    ViewBag.PageTitle = "Yeni Ürün";
+    ViewBag.PageTitle = "Ürün Düzenle";
 }
 
 <div class="content-header">
@@ -27,7 +27,9 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-11 offset-1">
-                                <form class="form-horizontal" asp-action="Create" method="post">
+                                <form class="form-horizontal" asp-action="Edit" method="post">
+                                    <input asp-for="ProductId" type="hidden" />
+
                                     <div class="form-group row">
                                         <label asp-for="ProductName" class="col-md-2 col-form-label">Ürün Adı</label>
                                         <div class="col-md-8">
@@ -64,7 +66,7 @@
                                             <input type="text" class="form-control" asp-for="ProductStock">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group row">
                                         <div class="col-md-4 offset-md-2">
                                             <button type="submit" class="btn btn-success">Kaydet</button>

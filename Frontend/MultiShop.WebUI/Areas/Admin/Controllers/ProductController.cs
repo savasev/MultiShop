@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
 using MultiShop.DtoLayer.CatalogDtos.ProductDtos;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers;
 
@@ -19,6 +20,32 @@ public class ProductController : BaseAdminController
     public ProductController(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
+    }
+
+    #endregion
+
+    #region Utilities
+
+    private async Task PrepareAvailableCategoriesAsync(IList<SelectListItem> items)
+    {
+        var client = _httpClientFactory.CreateClient();
+
+        var response = await client.GetAsync("https://localhost:7070/api/categories");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var jsonData = await response.Content.ReadAsStringAsync();
+            var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+
+            items = (from c in categories
+                                   select new SelectListItem
+                                   {
+                                       Text = c.CategoryName,
+                                       Value = c.CategoryId
+                                   }).ToList();
+        }
+
+        items.Insert(0, new SelectListItem { Value = "", Text = "Select Category" });
     }
 
     #endregion
@@ -53,31 +80,69 @@ public class ProductController : BaseAdminController
 
     public async Task<IActionResult> Create()
     {
-        var availableCategories = new List<SelectListItem>();
+        var createProductDto = new CreateProductDto();
 
+        await PrepareAvailableCategoriesAsync(createProductDto.AvailableCategories);
+
+        return View(createProductDto);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(CreateProductDto createProductDto)
+    {
         var client = _httpClientFactory.CreateClient();
+        var jsonData = JsonConvert.SerializeObject(createProductDto);
+        var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-        var response = await client.GetAsync("https://localhost:7070/api/categories");
+        var responseMessage = await client.PostAsync("https://localhost:7070/api/products", stringContent);
 
-        if (response.IsSuccessStatusCode)
+        if (responseMessage.IsSuccessStatusCode)
         {
-            var jsonData = await response.Content.ReadAsStringAsync();
-            var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
-
-            availableCategories = (from c in categories
-                                   select new SelectListItem
-                                   {
-                                       Text = c.CategoryName,
-                                       Value = c.CategoryId
-                                   }).ToList();
+            return RedirectToAction("List");
         }
 
-        availableCategories.Insert(0, new SelectListItem { Value = "", Text = "Select Category" });
+        await PrepareAvailableCategoriesAsync(createProductDto.AvailableCategories);
 
-        return View(new CreateProductDto
+        return View(createProductDto);
+    }
+
+    public async Task<IActionResult> Edit(string id)
+    {
+        var client = _httpClientFactory.CreateClient();
+
+        var response = await client.GetAsync($"https://localhost:7070/api/products/{id}");
+
+        if (!response.IsSuccessStatusCode)
+            return RedirectToAction("List");
+
+        var jsonData = await response.Content.ReadAsStringAsync();
+        var editProductDto = JsonConvert.DeserializeObject<EditProductDto>(jsonData);
+
+        await PrepareAvailableCategoriesAsync(editProductDto.AvailableCategories);
+
+        return View(editProductDto);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(EditProductDto editProductDto)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var jsonData = JsonConvert.SerializeObject(editProductDto);
+        var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+        var responseMessage = await client.PutAsync("https://localhost:7070/api/products", stringContent);
+
+        if (responseMessage.IsSuccessStatusCode)
         {
-            AvailableCategories = availableCategories
-        });
+            return RedirectToAction("List");
+        }
+
+        var errorMessage = await responseMessage.Content.ReadAsStringAsync();
+        ModelState.AddModelError("", errorMessage);
+
+        await PrepareAvailableCategoriesAsync(editProductDto.AvailableCategories);
+
+        return View(editProductDto);
     }
 
     #endregion
