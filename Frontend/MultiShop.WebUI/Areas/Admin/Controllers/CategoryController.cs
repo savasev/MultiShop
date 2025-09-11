@@ -24,6 +24,8 @@ public class CategoryController : BaseAdminController
 
     #region Methods
 
+    #region List
+
     public IActionResult Index()
     {
         return RedirectToAction("List");
@@ -50,6 +52,10 @@ public class CategoryController : BaseAdminController
         return Json(new { data = categories });
     }
 
+    #endregion
+
+    #region Create
+
     public IActionResult Create()
     {
         return View(new CreateCategoryDto());
@@ -71,6 +77,10 @@ public class CategoryController : BaseAdminController
 
         return View(createCategoryDto);
     }
+
+    #endregion
+
+    #region Edit
 
     public async Task<IActionResult> Edit(string id)
     {
@@ -107,6 +117,10 @@ public class CategoryController : BaseAdminController
         return View(editCategoryDto);
     }
 
+    #endregion
+
+    #region Delete
+
     [HttpPost]
     public async Task<IActionResult> Delete(string id)
     {
@@ -119,6 +133,8 @@ public class CategoryController : BaseAdminController
 
         return Json(new { success = false });
     }
+
+    #endregion
 
     #endregion
 }

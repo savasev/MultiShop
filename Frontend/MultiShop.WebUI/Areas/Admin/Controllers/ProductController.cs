@@ -52,6 +52,8 @@ public class ProductController : BaseAdminController
 
     #region Methods
 
+    #region List
+
     public IActionResult Index()
     {
         return RedirectToAction("List");
@@ -77,6 +79,10 @@ public class ProductController : BaseAdminController
 
         return Json(new { data = products });
     }
+
+    #endregion
+
+    #region Create
 
     public async Task<IActionResult> Create()
     {
@@ -105,6 +111,10 @@ public class ProductController : BaseAdminController
 
         return View(createProductDto);
     }
+
+    #endregion
+
+    #region Edit
 
     public async Task<IActionResult> Edit(string id)
     {
@@ -144,6 +154,25 @@ public class ProductController : BaseAdminController
 
         return View(editProductDto);
     }
+
+    #endregion
+
+    #region Delete
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var client = _httpClientFactory.CreateClient();
+
+        var responseMessage = await client.DeleteAsync($"https://localhost:7070/api/products/{id}");
+
+        if (responseMessage.IsSuccessStatusCode)
+            return Json(new { success = true });
+
+        return Json(new { success = false });
+    }
+
+    #endregion
 
     #endregion
 }
