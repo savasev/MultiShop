@@ -31,6 +31,14 @@ public class ProductsController : BaseApiController
         return Ok(products);
     }
 
+    [HttpGet("GetProductListWithCategory")]
+    public async Task<IActionResult> GetProductListWithCategory()
+    {
+        var productsWithCategory = await _productService.GetAllProductsWithCategoryAsync();
+
+        return Ok(productsWithCategory);
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetProductById(string id)
     {
