@@ -1,5 +1,12 @@
 ﻿<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+    <li class="nav-item">
+        <a asp-controller="Home" asp-action="Dashboard" class="nav-link @Html.ActiveClass(MenuItems.RootMenuItems, "Home")">
+            <i class="far fa-dot-circle nav-icon"></i>
+            <p>Dashboard</p>
+        </a>
+    </li>
+
     <li class="nav-item @Html.MenuOpen(MenuItems.Catalogs)">
 
         <a href="#" class="nav-link">

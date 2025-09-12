@@ -4,6 +4,17 @@ public static class MenuItems
 {
     #region Catalog Menu Items
 
+    public static readonly Dictionary<string, string[]> RootMenuItems = new()
+    {
+        {
+            "Home",
+            new[]
+            {
+                "Dashboard"
+            }
+        },
+    };
+
     public static readonly Dictionary<string, string[]> Catalogs = new()
     {
         {
