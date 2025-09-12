@@ -20,7 +20,6 @@ public class CategoryService : ICategoryService
     public CategoryService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
         _mapper = mapper;
-
         var client = new MongoClient(databaseSettings.ConnectionString);
         var database = client.GetDatabase(databaseSettings.DatabaseName);
         _categoryCollection = database.GetCollection<Category>(databaseSettings.CategoryCollectionName);

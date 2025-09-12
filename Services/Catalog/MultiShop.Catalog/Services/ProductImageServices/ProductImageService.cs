@@ -20,7 +20,6 @@ public class ProductImageService : IProductImageService
     public ProductImageService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
         _mapper = mapper;
-
         var client = new MongoClient(databaseSettings.ConnectionString);
         var database = client.GetDatabase(databaseSettings.DatabaseName);
         _productImageCollection = database.GetCollection<ProductImage>(databaseSettings.ProductImageCollectionName);

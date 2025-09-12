@@ -10,6 +10,8 @@ public class DatabaseSettings : IDatabaseSettings
 
     public string ProductImageCollectionName { get; set; }
 
+    public string FeatureSliderCollectionName { get; set; }
+
     public string ConnectionString { get; set; }
 
     public string DatabaseName { get; set; }
