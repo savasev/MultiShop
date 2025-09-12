@@ -30,7 +30,7 @@
                                     <th class="text-center">#</th>
                                     <th>Resim</th>
                                     <th>Başlık</th>
-                                    <th>Durum</th>
+                                    <th>Aktif</th>
                                     <th class="text-center">İşlem</th>
                                 </tr>
                             </thead>
@@ -86,6 +86,13 @@
                         data: 'status',
                         width: '15%',
                         className: 'text-center',
+                        render: function(data, type, row, meta) {
+                            if (data {
+                                return '<i class="fa fa-check text-green" aria-hidden="true"></i>';
+                            } else {
+                                return '<i class="fa fa-times text-red" aria-hidden="true"></i>';
+                            }
+                        }
                     },
                     {
                         data: 'featureSliderId',
