@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MultiShop.WebUI.ViewComponents;
+namespace MultiShop.WebUI.Components;
 
-public class VendorsViewComponent : ViewComponent
+public class CarouselViewComponent : ViewComponent
 {
     #region Methods
 

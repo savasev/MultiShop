@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MultiShop.WebUI.ViewComponents;
+namespace MultiShop.WebUI.Components;
 
-public class OfferDiscountViewComponent : ViewComponent
+public class ProductDetailInformationViewComponent : ViewComponent
 {
     #region Methods
 

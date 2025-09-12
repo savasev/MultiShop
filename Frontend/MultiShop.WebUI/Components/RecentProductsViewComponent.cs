@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MultiShop.WebUI.ViewComponents;
+namespace MultiShop.WebUI.Components;
 
-public class ProductFilterByColorViewComponent : ViewComponent
+public class RecentProductsViewComponent : ViewComponent
 {
     #region Methods
 

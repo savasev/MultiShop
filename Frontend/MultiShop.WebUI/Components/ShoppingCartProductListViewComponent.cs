@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MultiShop.WebUI.ViewComponents;
+namespace MultiShop.WebUI.Components;
 
-public class ProductListSortingOptionsViewComponent : ViewComponent
+public class ShoppingCartProductListViewComponent : ViewComponent
 {
     #region Methods
 

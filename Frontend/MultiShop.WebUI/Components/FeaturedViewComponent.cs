@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MultiShop.WebUI.ViewComponents;
+namespace MultiShop.WebUI.Components;
 
-public class ShoppingCartApplyCouponCodeViewComponent : ViewComponent
+public class FeaturedViewComponent : ViewComponent
 {
     #region Methods
 

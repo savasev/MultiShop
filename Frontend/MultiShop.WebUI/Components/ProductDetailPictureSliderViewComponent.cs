@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MultiShop.WebUI.ViewComponents;
+namespace MultiShop.WebUI.Components;
 
-public class ProductDetailFeaturedProductsViewComponent : ViewComponent
+public class ProductDetailPictureSliderViewComponent : ViewComponent
 {
     #region Methods
 
