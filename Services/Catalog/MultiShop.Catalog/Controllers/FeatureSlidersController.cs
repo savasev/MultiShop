@@ -24,9 +24,9 @@ public class FeatureSlidersController : BaseApiController
     #region Methods
 
     [HttpGet]
-    public async Task<IActionResult> GetFeatureSliderList()
+    public async Task<IActionResult> GetFeatureSliderList([FromQuery] bool? status = null)
     {
-        var featureSliders = await _featureSliderService.GetAllFeatureSlidersAsync();
+        var featureSliders = await _featureSliderService.GetAllFeatureSlidersAsync(status: status);
 
         return Ok(featureSliders);
     }

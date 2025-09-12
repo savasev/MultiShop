@@ -27,7 +27,7 @@ public class CarouselViewComponent : ViewComponent
     {
         var client = _httpClientFactory.CreateClient();
 
-        var response = await client.GetAsync("https://localhost:7070/api/featuresliders");
+        var response = await client.GetAsync("https://localhost:7070/api/featuresliders?status=" + true);
 
         if (!response.IsSuccessStatusCode)
             return Content(string.Empty);

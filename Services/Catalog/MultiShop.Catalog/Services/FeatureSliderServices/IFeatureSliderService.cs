@@ -4,7 +4,7 @@ namespace MultiShop.Catalog.Services.FeatureSliderServices;
 
 public interface IFeatureSliderService
 {
-    Task<List<ResultFeatureSliderDto>> GetAllFeatureSlidersAsync();
+    Task<List<ResultFeatureSliderDto>> GetAllFeatureSlidersAsync(bool? status = null);
 
     Task<GetByIdFeatureSliderDto> GetFeatureSliderByIdAsync(string id);
 
