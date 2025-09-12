@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using MultiShop.WebUI.Models;
 using Newtonsoft.Json;
 
@@ -27,7 +28,14 @@ public class CarouselViewComponent : ViewComponent
     {
         var client = _httpClientFactory.CreateClient();
 
-        var response = await client.GetAsync("https://localhost:7070/api/featuresliders?status=" + true);
+        var queryParams = new Dictionary<string, string?>
+        {
+            ["status"] = true.ToString().ToLower()
+        };
+
+        var url = QueryHelpers.AddQueryString("https://localhost:7070/api/featuresliders", queryParams);
+
+        var response = await client.GetAsync(url);
 
         if (!response.IsSuccessStatusCode)
             return Content(string.Empty);
