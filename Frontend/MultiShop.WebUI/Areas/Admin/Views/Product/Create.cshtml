@@ -29,37 +29,37 @@
                             <div class="col-11 offset-1">
                                 <form class="form-horizontal" asp-action="Create" method="post">
                                     <div class="form-group row">
-                                        <label asp-for="ProductName" class="col-md-2 col-form-label">Ürün Adı</label>
+                                        <label asp-for="ProductName" class="col-md-2 col-form-label text-right">Ürün Adı</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" asp-for="ProductName">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="ProductDescription" class="col-md-2 col-form-label">Ürün Açıklama</label>
+                                        <label asp-for="ProductDescription" class="col-md-2 col-form-label text-right">Ürün Açıklama</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" asp-for="ProductDescription"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="CategoryId" class="col-md-2 col-form-label">Kategori</label>
+                                        <label asp-for="CategoryId" class="col-md-2 col-form-label text-right">Kategori</label>
                                         <div class="col-md-8">
                                             <select asp-for="CategoryId" asp-items="Model.AvailableCategories" class="form-control"></select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="ProductImageUrl" class="col-md-2 col-form-label">Ürün Resim Url</label>
+                                        <label asp-for="ProductImageUrl" class="col-md-2 col-form-label text-right">Ürün Resim Url</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" asp-for="ProductImageUrl">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="ProductPrice" class="col-md-2 col-form-label">Ürün Fiyatı</label>
+                                        <label asp-for="ProductPrice" class="col-md-2 col-form-label text-right">Ürün Fiyatı</label>
                                         <div class="col-md-3">
                                             <input type="text" class="form-control" asp-for="ProductPrice">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="ProductStock" class="col-md-2 col-form-label">Ürün Stok</label>
+                                        <label asp-for="ProductStock" class="col-md-2 col-form-label text-right">Ürün Stok</label>
                                         <div class="col-md-3">
                                             <input type="text" class="form-control" asp-for="ProductStock">
                                         </div>
