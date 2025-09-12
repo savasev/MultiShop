@@ -41,14 +41,23 @@ public class FeatureSliderService : IFeatureSliderService
         await _featureSliderCollection.DeleteOneAsync(x => x.FeatureSliderId == id);
     }
 
-    public async Task<List<ResultFeatureSliderDto>> GetAllFeatureSlidersAsync(bool? status = null)
+    public async Task<List<ResultFeatureSliderDto>> GetAllFeatureSlidersAsync(bool? status = null, bool? ascending = null)
     {
         var filter = Builders<FeatureSlider>.Filter.Empty;
 
         if (status.HasValue)
             filter = Builders<FeatureSlider>.Filter.Eq(x => x.Status, status.Value);
 
-        var featureSliders = await _featureSliderCollection.Find(filter).ToListAsync();
+        var query = _featureSliderCollection.Find(filter);
+
+        if (ascending.HasValue)
+        {
+            query = ascending.Value
+                ? query.Sort(Builders<FeatureSlider>.Sort.Ascending(x => x.DisplayOrder))
+                : query.Sort(Builders<FeatureSlider>.Sort.Descending(x => x.DisplayOrder));
+        }
+
+        var featureSliders = await query.ToListAsync();
 
         return _mapper.Map<List<ResultFeatureSliderDto>>(featureSliders);
     }

@@ -12,6 +12,8 @@ public class ResultFeatureSliderDto
 
     public string ImageUrl { get; set; }
 
+    public int DisplayOrder { get; set; }
+
     public bool Status { get; set; }
 
     #endregion

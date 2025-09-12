@@ -30,7 +30,8 @@ public class CarouselViewComponent : ViewComponent
 
         var queryParams = new Dictionary<string, string?>
         {
-            ["status"] = true.ToString().ToLower()
+            ["status"] = true.ToString().ToLower(),
+            ["ascending"] = true.ToString().ToLower(),
         };
 
         var url = QueryHelpers.AddQueryString("https://localhost:7070/api/featuresliders", queryParams);
@@ -41,7 +42,8 @@ public class CarouselViewComponent : ViewComponent
             return Content(string.Empty);
 
         var jsonData = await response.Content.ReadAsStringAsync();
-        var featureSliders = JsonConvert.DeserializeObject<List<FeatureSliderModel>>(jsonData);
+        var featureSliders = JsonConvert.DeserializeObject<List<FeatureSliderModel>>(jsonData)
+            ?? new List<FeatureSliderModel>();
 
         return View(featureSliders);
     }

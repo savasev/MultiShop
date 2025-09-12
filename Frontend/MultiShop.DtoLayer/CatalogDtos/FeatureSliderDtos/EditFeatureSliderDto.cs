@@ -12,6 +12,8 @@ public class EditFeatureSliderDto
 
     public string ImageUrl { get; set; }
 
+    public int DisplayOrder { get; set; }
+
     public bool Status { get; set; }
 
     #endregion
