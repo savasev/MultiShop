@@ -30,7 +30,7 @@
                                     <th class="text-center">#</th>
                                     <th>Resim</th>
                                     <th>Başlık</th>
-                                    <th>Aktif</th>
+                                    <th class="text-center">Aktif</th>
                                     <th class="text-center">İşlem</th>
                                 </tr>
                             </thead>
@@ -84,10 +84,10 @@
                     },
                     {
                         data: 'status',
-                        width: '15%',
+                        width: '10%',
                         className: 'text-center',
                         render: function(data, type, row, meta) {
-                            if (data {
+                            if (data) {
                                 return '<i class="fa fa-check text-green" aria-hidden="true"></i>';
                             } else {
                                 return '<i class="fa fa-times text-red" aria-hidden="true"></i>';
