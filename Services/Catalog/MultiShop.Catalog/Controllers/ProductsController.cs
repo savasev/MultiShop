@@ -31,7 +31,7 @@ public class ProductsController : BaseApiController
         return Ok(products);
     }
 
-    [HttpGet("GetProductListWithCategory")]
+    [HttpGet("productlistwithcategory")]
     public async Task<IActionResult> GetProductListWithCategory()
     {
         var productsWithCategory = await _productService.GetAllProductsWithCategoryAsync();

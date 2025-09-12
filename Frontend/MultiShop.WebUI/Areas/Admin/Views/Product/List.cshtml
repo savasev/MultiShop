@@ -30,6 +30,7 @@
                                     <th class="text-center">#</th>
                                     <th class="text-center">Ürün Resmi</th>
                                     <th>Ürün Adı</th>
+                                    <th>Kategori</th>
                                     <th class="text-center">Ürün Fiyat</th>
                                     <th class="text-center">Stok</th>
                                     <th class="text-center">İşlem</th>
@@ -60,7 +61,7 @@
                 searching: false,
                 ordering: false,
                 ajax: {
-                    url: '/Admin/Product/ProductList',
+                    url: '/Admin/Product/ProductListWithCategory',
                     type: 'POST',
                 },
                 columns: [
@@ -82,6 +83,9 @@
                     },
                     {
                         data: 'productName',
+                    },
+                    {
+                        data: 'categoryName',
                     },
                     {
                         data: 'productPrice',

@@ -84,6 +84,22 @@ public class ProductController : BaseAdminController
         return Json(new { data = products });
     }
 
+    [HttpPost]
+    public async Task<IActionResult> ProductListWithCategory()
+    {
+        var client = _httpClientFactory.CreateClient();
+
+        var response = await client.GetAsync("https://localhost:7070/api/products/productlistwithcategory");
+
+        if (!response.IsSuccessStatusCode)
+            return Json(new { data = new List<ResultProductWithCategoryDto>() });
+
+        var jsonData = await response.Content.ReadAsStringAsync();
+        var products = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
+
+        return Json(new { data = products });
+    }
+
     #endregion
 
     #region Create
