@@ -19,6 +19,13 @@ public static class MenuItems
             {
                 "List", "Create", "Edit"
             }
+        },
+        {
+            "FeatureSlider",
+            new[]
+            {
+                "List", "Create", "Edit"
+            }
         }
     };
 
