@@ -5,6 +5,9 @@
     </a>
 
     <div class="sidebar">
+
+        @await Html.PartialAsync("Partials/_MainSidebarUserPanel")
+
         <nav class="mt-2">
             @await Html.PartialAsync("Partials/_NavSidebar")
         </nav>
