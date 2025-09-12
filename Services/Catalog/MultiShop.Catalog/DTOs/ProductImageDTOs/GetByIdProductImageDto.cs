@@ -1,4 +1,4 @@
-﻿namespace MultiShop.Catalog.DTOs.ProductImageDTOs;
+﻿namespace MultiShop.Catalog.DTOs.ProductImageDtos;
 
 public class GetByIdProductImageDto
 {

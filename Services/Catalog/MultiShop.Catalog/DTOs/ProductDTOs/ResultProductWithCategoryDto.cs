@@ -1,4 +1,4 @@
-﻿namespace MultiShop.Catalog.DTOs.ProductDTOs;
+﻿namespace MultiShop.Catalog.DTOs.ProductDtos;
 
 public class ResultProductWithCategoryDto
 {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MongoDB.Driver;
-using MultiShop.Catalog.DTOs.CategoryDTOs;
+using MultiShop.Catalog.DTOs.CategoryDtos;
 using MultiShop.Catalog.Entities;
 using MultiShop.Catalog.Settings;
 

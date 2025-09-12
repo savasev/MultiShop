@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.Catalog.DTOs.CategoryDTOs;
+using MultiShop.Catalog.DTOs.CategoryDtos;
 using MultiShop.Catalog.Services.CategoryServices;
 
 namespace MultiShop.Catalog.Controllers;
