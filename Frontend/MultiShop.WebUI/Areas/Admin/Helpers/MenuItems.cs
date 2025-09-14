@@ -44,6 +44,13 @@ public static class MenuItems
             {
                 "List", "Create", "Edit"
             }
+        },
+        {
+            "Feature",
+            new[]
+            {
+                "List", "Create", "Edit"
+            }
         }
     };
 

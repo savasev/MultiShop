@@ -44,7 +44,7 @@ public class FeaturesController : BaseApiController
     {
         await _featureService.CreateFeatureAsync(createFeatureDto);
 
-        return Ok("Öne çıkan alan başarıyla eklendi.");
+        return Ok("Özellik başarıyla eklendi.");
     }
 
     [HttpPut]
@@ -52,7 +52,7 @@ public class FeaturesController : BaseApiController
     {
         await _featureService.UpdateFeatureAsync(updateFeatureDto);
 
-        return Ok("Öne çıkan alan başarıyla güncellendi.");
+        return Ok("Özellik başarıyla güncellendi.");
     }
 
     [HttpDelete("{id}")]
@@ -60,7 +60,7 @@ public class FeaturesController : BaseApiController
     {
         await _featureService.DeleteFeatureAsync(id);
 
-        return Ok("Öne çıkan alan başarıyla silindi.");
+        return Ok("Özellik başarıyla silindi.");
     }
 
     #endregion
