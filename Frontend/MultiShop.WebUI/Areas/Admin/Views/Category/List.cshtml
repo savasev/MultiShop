@@ -28,6 +28,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">#</th>
+                                    <th class="text-center">Kategori Resmi</th>
                                     <th>Kategori Adı</th>
                                     <th class="text-center">İşlem</th>
                                 </tr>
@@ -67,6 +68,14 @@
                         className: 'text-center',
                         render: function(data, type, row, meta) {
                             return meta.row + 1;
+                        }
+                    },
+                    {
+                        data: 'imageUrl',
+                        width: '10%',
+                        className: 'text-center',
+                        render: function(data, type, row, meta) {
+                            return `<img src="${data}" class="img-fluid">`;
                         }
                     },
                     {
