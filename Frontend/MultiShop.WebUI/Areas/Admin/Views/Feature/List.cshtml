@@ -1,1 +1,142 @@
-﻿
+﻿@{
+    ViewBag.PageTitle = "Özellikler";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <h2 class="m-0">@ViewBag.PageTitle</h2>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary float-right" asp-action="Create">Yeni Özellik</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-success card-outline">
+                    <div class="card-header with-border clearfix">
+                        <h3 class="card-title">@ViewBag.PageTitle</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="features-grid" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Başlık</th>
+                                    <th>Icon</th>
+                                    <th class="text-center">İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section styles {
+    @await Html.PartialAsync("Partials/_DataTableStyles")
+}
+
+@section scripts {
+    @await Html.PartialAsync("Partials/_DataTableScripts")
+
+    <script>
+        $(function() {
+            $('#features-grid').DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                searching: false,
+                ordering: false,
+                ajax: {
+                    url: '/Admin/Feature/FeatureList',
+                    type: 'POST',
+                },
+                columns: [
+                    {
+                        data: null,
+                        width: '5%',
+                        className: 'text-center',
+                        render: function(data, type, row, meta) {
+                            return meta.row + 1;
+                        }
+                    },
+                    {
+                        data: 'title',
+                    },
+                    {
+                        data: 'icon',
+                        width: '10%',
+                    },
+                    {
+                        data: 'featureId',
+                        render: function(data, type, row) {
+                            return `
+                                <a class="btn btn-outline-primary btn-sm edit-btn mr-1" href="/Admin/Feature/Edit/${data}">Düzenle</a>
+                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="${data}">Sil</button>
+                            `;
+                        },
+                        width: '15%',
+                        className: 'text-center'
+                    }
+                ],
+            });
+
+            $('#features-grid').on('click', '.delete-btn', function() {
+
+                var id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Emin misiniz?',
+                    text: "Bu kaydı silmek istediğinize emin misiniz?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Evet, sil!',
+                    cancelButtonText: 'Vazgeç'
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/Admin/Feature/Delete/' + id,
+                            type: 'POST',
+                            success: function (res) {
+                                if (res.success) {
+                                    $(document).Toasts('create', {
+                                        class: 'bg-success',
+                                        title: 'Başarılı',
+                                        body: 'Özellik başarıyla silindi.'
+                                    });
+
+                                    $('#features-grid').DataTable().ajax.reload();
+                                } else {
+                                    $(document).Toasts('create', {
+                                        class: 'bg-danger',
+                                        title: 'Hata',
+                                        body: 'Silme işlemi başarısız oldu.'
+                                    });
+                                }
+                            },
+                            error: function () {
+                                $(document).Toasts('create', {
+                                    class: 'bg-danger',
+                                    title: 'Hata',
+                                    subtitle: '',
+                                    body: 'Silme işlemi başarısız oldu.'
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
