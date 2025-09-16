@@ -7,6 +7,7 @@ using MultiShop.Catalog.DTOs.OfferDiscountDtos;
 using MultiShop.Catalog.DTOs.ProductDetailDtos;
 using MultiShop.Catalog.DTOs.ProductDtos;
 using MultiShop.Catalog.DTOs.ProductImageDtos;
+using MultiShop.Catalog.DTOs.SiteInfoDtos;
 using MultiShop.Catalog.DTOs.SpecialOfferDtos;
 using MultiShop.Catalog.Entities;
 
@@ -62,5 +63,10 @@ public class GeneralMapping : Profile
         CreateMap<Brand, CreateBrandDto>().ReverseMap();
         CreateMap<Brand, UpdateBrandDto>().ReverseMap();
         CreateMap<Brand, GetByIdBrandDto>().ReverseMap();
+
+        CreateMap<SiteInfo, ResultSiteInfoDto>().ReverseMap();
+        CreateMap<SiteInfo, CreateSiteInfoDto>().ReverseMap();
+        CreateMap<SiteInfo, UpdateSiteInfoDto>().ReverseMap();
+        CreateMap<SiteInfo, GetByIdSiteInfoDto>().ReverseMap();
     }
 }

@@ -20,6 +20,8 @@ public class DatabaseSettings : IDatabaseSettings
 
     public string BrandCollectionName { get; set; }
 
+    public string SiteInfoCollectionName { get; set; }
+
     public string ConnectionString { get; set; }
 
     public string DatabaseName { get; set; }
