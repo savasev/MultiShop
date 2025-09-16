@@ -84,7 +84,7 @@
                         data: 'siteInfoId',
                         render: function(data, type, row) {
                             return `
-                                <a class="btn btn-outline-primary btn-sm edit-btn mr-1" href="/Admin/SiteInfo/Edit/${data}">Düzenle</a>
+                                <button class="btn btn-sm btn-primary edit-parent" data-id="${data}">Edit</button>
                                 <button class="btn btn-outline-danger btn-sm delete-btn" data-id="${data}">Sil</button>
                             `;
                         },
@@ -94,82 +94,50 @@
                 ],
             });
 
-            $('#siteinfos-grid tbody').on('click', 'td.dt-control', function () {
-                var table = $('#siteinfos-grid').DataTable();
-                var tr = $(this).closest('tr');
-                var row = table.row(tr);
+            $('#siteinfos-grid').on('click', '.edit-parent', function () {
+                let btn = $(this);
+                let tr = btn.closest('tr');
+                let row = $('#siteinfos-grid').DataTable().row(tr);
+                let data = row.data();
 
-                if (row.child.isShown()) {
-                    
-                    row.child.hide();
-                    
-                    tr.removeClass('shown');
+                let categoryCell = tr.find('td').eq(1);
+                categoryCell.attr('contenteditable', true).focus();
 
-                } else {
-
-                    var html = '<table class="table table-sm table-bordered child-table">' +
-                               '<thead><tr><th>InfoType</th><th>InfoValue</th></tr></thead><tbody>';
-
-                    row.data().items.forEach(item => {
-                        html += `<tr>
-                                    <td>${item.infoType}</td>
-                                    <td>${item.infoValue}</td>
-                                 </tr>`;
-                    });
-
-                    html += '</tbody></table>';
-
-                    row.child(html).show();
-
-                    tr.addClass('shown');
-                }
+                btn.removeClass('edit-parent btn-primary')
+                   .addClass('save-parent btn-success')
+                   .text('Save');
             });
 
-            $('#siteinfos-grid').on('click', '.delete-btn', function() {
+            function format(items) {
+                let html = `<table class="table table-sm child-table"><thead><tr>
+                    <th>Info Type</th>
+                    <th>Info Value</th>
+                    <th>Action</th>
+                </tr></thead><tbody>`;
 
-                var id = $(this).data('id');
-
-                Swal.fire({
-                    title: 'Emin misiniz?',
-                    text: "Bu kaydı silmek istediğinize emin misiniz?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Evet, sil!',
-                    cancelButtonText: 'Vazgeç'
-                }).then((result) => {
-
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: '/Admin/SiteInfo/Delete/' + id,
-                            type: 'POST',
-                            success: function (res) {
-                                if (res.success) {
-                                    $(document).Toasts('create', {
-                                        class: 'bg-success',
-                                        title: 'Başarılı',
-                                        body: 'Site bilgisi başarıyla silindi.'
-                                    });
-
-                                    $('#siteinfos-grid').DataTable().ajax.reload();
-                                } else {
-                                    $(document).Toasts('create', {
-                                        class: 'bg-danger',
-                                        title: 'Hata',
-                                        body: 'Silme işlemi başarısız oldu.'
-                                    });
-                                }
-                            },
-                            error: function () {
-                                $(document).Toasts('create', {
-                                    class: 'bg-danger',
-                                    title: 'Hata',
-                                    subtitle: '',
-                                    body: 'Silme işlemi başarısız oldu.'
-                                });
-                            }
-                        });
-                    }
+                items.forEach((item, i) => {
+                    html += `<tr data-index="${i}">
+                        <td contenteditable="true" class="infoType">${item.infoType}</td>
+                        <td contenteditable="true" class="infoValue">${item.infoValue}</td>
+                        <td><button class="btn btn-sm btn-success save-child">Save</button></td>
+                    </tr>`;
                 });
+
+                html += `</tbody></table>`;
+                return html;
+            }
+
+            $('#siteinfos-grid tbody').on('click', 'td.dt-control', function () {
+                var tr = $(this).closest('tr');
+                var row = $('#siteinfos-grid').DataTable().row(tr);
+
+                if (row.child.isShown()) {
+                    row.child.hide();
+                    tr.removeClass('shown');
+                } else {
+                    row.child(format(row.data().items)).show();
+                    tr.addClass('shown');
+                }
             });
         });
     </script>
