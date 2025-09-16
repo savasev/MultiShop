@@ -66,7 +66,15 @@ public class SiteInfoService : ISiteInfoService
 
     public async Task UpdateSiteInfoAsync(UpdateSiteInfoDto updateSiteInfoDto)
     {
+        var existingSiteInfo = await _siteInfoCollection.Find(x => x.SiteInfoId == updateSiteInfoDto.SiteInfoId)
+            .FirstOrDefaultAsync();
+
+        if (existingSiteInfo == null)
+            throw new ArgumentNullException(nameof(existingSiteInfo));
+
         var siteInfo = _mapper.Map<SiteInfo>(updateSiteInfoDto);
+
+        siteInfo.CreatedOnUtc = existingSiteInfo.CreatedOnUtc;
 
         await _siteInfoCollection.FindOneAndReplaceAsync(x => x.SiteInfoId == updateSiteInfoDto.SiteInfoId, siteInfo);
     }
