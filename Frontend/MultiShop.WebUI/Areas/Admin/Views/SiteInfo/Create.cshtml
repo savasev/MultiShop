@@ -1,2 +1,50 @@
 ﻿@model CreateSiteInfoDto
+@{
+    ViewBag.PageTitle = "Yeni Site Bilgisi";
+}
 
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <h2 class="m-0">@ViewBag.PageTitle</h2>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary float-right" asp-action="List">Tüm Site Bilgileri</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-danger card-outline">
+                    <div class="card-header with-border clearfix">
+                        <h3 class="card-title">@ViewBag.PageTitle</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-11 offset-1">
+                                <form class="form-horizontal" asp-action="Create" method="post">
+                                    <div class="form-group row">
+                                        <label asp-for="Category" class="col-md-2 col-form-label text-right">Kategori</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" asp-for="Category">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-4 offset-md-2">
+                                            <button type="submit" class="btn btn-success">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

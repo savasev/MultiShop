@@ -68,5 +68,6 @@ public class GeneralMapping : Profile
         CreateMap<SiteInfo, CreateSiteInfoDto>().ReverseMap();
         CreateMap<SiteInfo, UpdateSiteInfoDto>().ReverseMap();
         CreateMap<SiteInfo, GetByIdSiteInfoDto>().ReverseMap();
+        CreateMap<SiteInfoItem, SiteInfoItemDto>();
     }
 }
