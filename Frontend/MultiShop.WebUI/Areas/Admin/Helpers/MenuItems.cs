@@ -51,6 +51,13 @@ public static class MenuItems
             {
                 "List", "Create", "Edit"
             }
+        },
+        {
+            "OfferDiscount",
+            new[]
+            {
+                "List", "Create", "Edit"
+            }
         }
     };
 
