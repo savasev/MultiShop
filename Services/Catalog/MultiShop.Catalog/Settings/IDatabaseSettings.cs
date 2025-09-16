@@ -16,6 +16,8 @@ public interface IDatabaseSettings
 
     public string FeatureCollectionName { get; set; }
 
+    public string OfferDiscountCollectionName { get; set; }
+
     public string ConnectionString { get; set; }
 
     public string DatabaseName { get; set; }
