@@ -27,16 +27,16 @@ public class OfferDiscountViewComponent : ViewComponent
     {
         var client = _httpClientFactory.CreateClient();
 
-        var response = await client.GetAsync("https://localhost:7070/api/specialoffers");
+        var response = await client.GetAsync("https://localhost:7070/api/offerdiscounts");
 
         if (!response.IsSuccessStatusCode)
             return Content(string.Empty);
 
         var jsonData = await response.Content.ReadAsStringAsync();
-        var specialOffers = JsonConvert.DeserializeObject<List<SpecialOfferModel>>(jsonData)
-            ?? new List<SpecialOfferModel>();
+        var offerDiscounts = JsonConvert.DeserializeObject<List<OfferDiscountModel>>(jsonData)
+            ?? new List<OfferDiscountModel>();
 
-        return View(specialOffers);
+        return View(offerDiscounts);
     }
 
     #endregion
