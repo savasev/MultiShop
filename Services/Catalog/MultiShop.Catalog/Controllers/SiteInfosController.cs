@@ -4,7 +4,7 @@ using MultiShop.Catalog.Services.SiteInfoServices;
 
 namespace MultiShop.Catalog.Controllers;
 
-public class SiteInfosController : ControllerBase
+public class SiteInfosController : BaseApiController
 {
 	#region Fields
 
