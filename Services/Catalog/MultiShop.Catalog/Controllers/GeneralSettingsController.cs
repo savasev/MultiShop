@@ -44,11 +44,11 @@ public class GeneralSettingsController : BaseApiController
     public IActionResult GetCategories()
     {
         var categories = Enum.GetValues(typeof(SettingCategory)).Cast<SettingCategory>()
-            .Select(category => new
+            .Select(category => new ResultSettingCategoryDto
             {
-                Id = (int)category,
-                Name = category.ToString()
-            });
+                Value = (int)category,
+                Text = category.ToString()
+            }).ToList();
 
         return Ok(categories);
     }
