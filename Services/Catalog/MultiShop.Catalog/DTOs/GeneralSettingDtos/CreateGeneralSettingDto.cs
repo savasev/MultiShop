@@ -4,7 +4,7 @@ public class CreateGeneralSettingDto
 {
     #region Properties
 
-    public int CategoryId { get; set; }
+    public int? SettingCategoryId { get; set; }
 
     public string Key { get; set; }
 

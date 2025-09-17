@@ -131,7 +131,7 @@ public class GeneralSettingController : BaseAdminController
         var jsonData = await response.Content.ReadAsStringAsync();
         var editGeneralSettingDto = JsonConvert.DeserializeObject<EditGeneralSettingDto>(jsonData);
 
-        await PrepareAvailableSettingCategoriesAsync(editGeneralSettingDto.AvailableSettingCategories, editGeneralSettingDto.CategoryId);
+        await PrepareAvailableSettingCategoriesAsync(editGeneralSettingDto.AvailableSettingCategories, editGeneralSettingDto.SettingCategoryId);
 
         return View(editGeneralSettingDto);
     }

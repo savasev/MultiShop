@@ -6,7 +6,7 @@ public class GetByIdGeneralSettingDto
 
     public string GeneralSettingId { get; set; }
 
-    public int CategoryId { get; set; }
+    public int? SettingCategoryId { get; set; }
 
     public string Key { get; set; }
 

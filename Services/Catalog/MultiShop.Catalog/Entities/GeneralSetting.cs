@@ -9,7 +9,7 @@ public class GeneralSetting
     [BsonRepresentation(BsonType.ObjectId)]
     public string GeneralSettingId { get; set; }
 
-    public int SettingCategoryId { get; set; }
+    public int? SettingCategoryId { get; set; }
 
     public string Key { get; set; }
 
