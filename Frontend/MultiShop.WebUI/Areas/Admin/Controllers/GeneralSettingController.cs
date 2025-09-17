@@ -110,7 +110,7 @@ public class GeneralSettingController : BaseAdminController
             return RedirectToAction("List");
         }
 
-        // await PrepareAvailableSettingCategoriesAsync(createGeneralSettingDto.AvailableSettingCategories);
+        await PrepareAvailableSettingCategoriesAsync(createGeneralSettingDto.AvailableSettingCategories);
 
         return View(createGeneralSettingDto);
     }
@@ -152,6 +152,8 @@ public class GeneralSettingController : BaseAdminController
 
         var errorMessage = await responseMessage.Content.ReadAsStringAsync();
         ModelState.AddModelError("", errorMessage);
+
+        await PrepareAvailableSettingCategoriesAsync(editGeneralSettingDto.AvailableSettingCategories, editGeneralSettingDto.SettingCategoryId);
 
         return View(editGeneralSettingDto);
     }
