@@ -8,7 +8,6 @@ using MultiShop.Catalog.Services.OfferDiscountServices;
 using MultiShop.Catalog.Services.ProductDetailServices;
 using MultiShop.Catalog.Services.ProductImageServices;
 using MultiShop.Catalog.Services.ProductServices;
-using MultiShop.Catalog.Services.SiteInfoServices;
 using MultiShop.Catalog.Services.SpecialOfferServices;
 using MultiShop.Catalog.Settings;
 using System.Reflection;
@@ -33,7 +32,6 @@ builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
 builder.Services.AddScoped<IFeatureService, FeatureService>();
 builder.Services.AddScoped<IOfferDiscountService, OfferDiscountService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
-builder.Services.AddScoped<ISiteInfoService, SiteInfoService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));

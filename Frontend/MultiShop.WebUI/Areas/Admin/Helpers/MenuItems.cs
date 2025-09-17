@@ -70,13 +70,6 @@ public static class MenuItems
 
     public static readonly Dictionary<string, string[]> Settings = new()
     {
-        {
-            "SiteInfo",
-            new[]
-            {
-                "List", "Create", "Edit"
-            }
-        },
     };
 
     #endregion
