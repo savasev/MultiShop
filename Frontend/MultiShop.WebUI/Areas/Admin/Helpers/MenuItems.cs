@@ -68,8 +68,15 @@ public static class MenuItems
         }
     };
 
-    public static readonly Dictionary<string, string[]> Settings = new()
+    public static readonly Dictionary<string, string[]> Configurations = new()
     {
+        {
+            "GeneralSetting",
+            new[]
+            {
+                "List", "Create", "Edit"
+            }
+        },
     };
 
     #endregion

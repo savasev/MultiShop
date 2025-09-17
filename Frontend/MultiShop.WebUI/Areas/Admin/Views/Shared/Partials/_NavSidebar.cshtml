@@ -62,20 +62,20 @@
         </ul>
     </li>
 
-    <li class="nav-item @Html.MenuOpen(MenuItems.Settings)">
+    <li class="nav-item @Html.MenuOpen(MenuItems.Configurations)">
 
         <a href="#" class="nav-link">
             <i class="nav-icon fas fa-cogs"></i>
             <p>
-                Ayarlar
+                Yapılandırma
                 <i class="fas fa-angle-left right"></i>
             </p>
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a asp-controller="SiteInfo" asp-action="List" class="nav-link @Html.ActiveClass(MenuItems.Settings, "SiteInfo")">
+                <a asp-controller="GeneralSetting" asp-action="List" class="nav-link @Html.ActiveClass(MenuItems.Configurations, "GeneralSetting")">
                     <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Site Bilgileri</p>
+                    <p>Ayarlar</p>
                 </a>
             </li>
         </ul>
