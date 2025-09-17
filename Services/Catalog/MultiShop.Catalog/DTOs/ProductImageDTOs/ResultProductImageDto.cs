@@ -1,7 +1,9 @@
-﻿namespace MultiShop.Catalog.DTOs.ProductImageDtos;
+﻿namespace MultiShop.Catalog.Dtos.ProductImageDtos;
 
 public class ResultProductImageDto
 {
+    #region Properties
+
     public string ProductImageId { get; set; }
 
     public string ProductId { get; set; }
@@ -11,4 +13,6 @@ public class ResultProductImageDto
     public string Image2 { get; set; }
 
     public string Image3 { get; set; }
+
+    #endregion
 }

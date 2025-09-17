@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.Catalog.DTOs.BrandDtos;
+using MultiShop.Catalog.Dtos.BrandDtos;
 using MultiShop.Catalog.Services.BrandServices;
 
 namespace MultiShop.Catalog.Controllers;

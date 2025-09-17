@@ -1,7 +1,9 @@
-﻿namespace MultiShop.Catalog.DTOs.GeneralSettingDtos;
+﻿namespace MultiShop.Catalog.Dtos.GeneralSettingDtos;
 
 public class UpdateGeneralSettingDto
 {
+    #region Properties
+
     public string GeneralSettingId { get; set; }
 
     public int CategoryId { get; set; }
@@ -9,4 +11,6 @@ public class UpdateGeneralSettingDto
     public string Key { get; set; }
 
     public string Value { get; set; }
+
+    #endregion
 }

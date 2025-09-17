@@ -1,4 +1,4 @@
-﻿namespace MultiShop.Catalog.DTOs.FeatureSliderDtos;
+﻿namespace MultiShop.Catalog.Dtos.FeatureSliderDtos;
 
 public class FeatureSliderQueryDto
 {

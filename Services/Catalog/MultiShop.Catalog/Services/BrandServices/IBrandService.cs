@@ -1,4 +1,4 @@
-﻿using MultiShop.Catalog.DTOs.BrandDtos;
+﻿using MultiShop.Catalog.Dtos.BrandDtos;
 
 namespace MultiShop.Catalog.Services.BrandServices;
 

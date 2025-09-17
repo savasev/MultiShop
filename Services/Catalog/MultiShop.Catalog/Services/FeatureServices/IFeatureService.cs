@@ -1,4 +1,4 @@
-﻿using MultiShop.Catalog.DTOs.FeatureDtos;
+﻿using MultiShop.Catalog.Dtos.FeatureDtos;
 
 namespace MultiShop.Catalog.Services.FeatureServices;
 

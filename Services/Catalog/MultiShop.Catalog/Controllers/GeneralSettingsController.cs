@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.Catalog.DTOs.GeneralSettingDtos;
+using MultiShop.Catalog.Dtos.GeneralSettingDtos;
 using MultiShop.Catalog.Entities.Enums;
 using MultiShop.Catalog.Services.GeneralSettingServices;
 
@@ -25,9 +25,9 @@ public class GeneralSettingsController : BaseApiController
     #region Methods
 
     [HttpGet]
-    public async Task<IActionResult> GetGeneralSettingList()
+    public async Task<IActionResult> GetGeneralSettingList([FromQuery] GeneralSettingQueryDto generalSettingQueryDto)
     {
-        var generalSettings = await _generalSettingService.GetAllGeneralSettingsAsync();
+        var generalSettings = await _generalSettingService.GetAllGeneralSettingsAsync(settingCategoryId: generalSettingQueryDto.SettingCategoryId);
 
         return Ok(generalSettings);
     }

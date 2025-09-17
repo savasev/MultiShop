@@ -1,7 +1,9 @@
-﻿namespace MultiShop.Catalog.DTOs.FeatureSliderDtos;
+﻿namespace MultiShop.Catalog.Dtos.FeatureSliderDtos;
 
 public class UpdateFeatureSliderDto
 {
+    #region Properties
+
     public string FeatureSliderId { get; set; }
 
     public string Title { get; set; }
@@ -13,4 +15,6 @@ public class UpdateFeatureSliderDto
     public int DisplayOrder { get; set; }
 
     public bool Status { get; set; }
+
+    #endregion
 }

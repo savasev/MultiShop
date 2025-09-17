@@ -1,10 +1,10 @@
-﻿using MultiShop.Catalog.DTOs.GeneralSettingDtos;
+﻿using MultiShop.Catalog.Dtos.GeneralSettingDtos;
 
 namespace MultiShop.Catalog.Services.GeneralSettingServices;
 
 public interface IGeneralSettingService
 {
-    Task<List<ResultGeneralSettingDto>> GetAllGeneralSettingsAsync();
+    Task<List<ResultGeneralSettingDto>> GetAllGeneralSettingsAsync(int? settingCategoryId = null);
 
     Task<GetByIdGeneralSettingDto> GetGeneralSettingByIdAsync(string id);
 

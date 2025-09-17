@@ -1,4 +1,4 @@
-﻿using MultiShop.Catalog.DTOs.OfferDiscountDtos;
+﻿using MultiShop.Catalog.Dtos.OfferDiscountDtos;
 
 namespace MultiShop.Catalog.Services.OfferDiscountServices;
 

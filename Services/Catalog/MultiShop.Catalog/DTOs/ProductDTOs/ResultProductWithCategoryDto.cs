@@ -1,7 +1,9 @@
-﻿namespace MultiShop.Catalog.DTOs.ProductDtos;
+﻿namespace MultiShop.Catalog.Dtos.ProductDtos;
 
 public class ResultProductWithCategoryDto
 {
+    #region Properties
+
     public string ProductId { get; set; }
 
     public string ProductName { get; set; }
@@ -17,4 +19,6 @@ public class ResultProductWithCategoryDto
     public string CategoryId { get; set; }
 
     public string CategoryName { get; set; }
+
+    #endregion
 }

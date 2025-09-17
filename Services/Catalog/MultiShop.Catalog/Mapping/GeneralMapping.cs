@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using MultiShop.Catalog.DTOs.BrandDtos;
-using MultiShop.Catalog.DTOs.CategoryDtos;
-using MultiShop.Catalog.DTOs.FeatureDtos;
-using MultiShop.Catalog.DTOs.FeatureSliderDtos;
-using MultiShop.Catalog.DTOs.GeneralSettingDtos;
-using MultiShop.Catalog.DTOs.OfferDiscountDtos;
-using MultiShop.Catalog.DTOs.ProductDetailDtos;
-using MultiShop.Catalog.DTOs.ProductDtos;
-using MultiShop.Catalog.DTOs.ProductImageDtos;
-using MultiShop.Catalog.DTOs.SpecialOfferDtos;
+using MultiShop.Catalog.Dtos.BrandDtos;
+using MultiShop.Catalog.Dtos.CategoryDtos;
+using MultiShop.Catalog.Dtos.FeatureDtos;
+using MultiShop.Catalog.Dtos.FeatureSliderDtos;
+using MultiShop.Catalog.Dtos.GeneralSettingDtos;
+using MultiShop.Catalog.Dtos.OfferDiscountDtos;
+using MultiShop.Catalog.Dtos.ProductDetailDtos;
+using MultiShop.Catalog.Dtos.ProductDtos;
+using MultiShop.Catalog.Dtos.ProductImageDtos;
+using MultiShop.Catalog.Dtos.SpecialOfferDtos;
 using MultiShop.Catalog.Entities;
 
 namespace MultiShop.Catalog.Mapping;

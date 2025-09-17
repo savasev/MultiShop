@@ -1,7 +1,9 @@
-﻿namespace MultiShop.Catalog.DTOs.OfferDiscountDtos;
+﻿namespace MultiShop.Catalog.Dtos.OfferDiscountDtos;
 
 public class UpdateOfferDiscountDto
 {
+    #region Properties
+
     public string OfferDiscountId { get; set; }
 
     public string Title { get; set; }
@@ -9,4 +11,6 @@ public class UpdateOfferDiscountDto
     public string SubTitle { get; set; }
 
     public string ImageUrl { get; set; }
+
+    #endregion
 }

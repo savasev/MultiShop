@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MongoDB.Driver;
-using MultiShop.Catalog.DTOs.GeneralSettingDtos;
+using MultiShop.Catalog.Dtos.GeneralSettingDtos;
 using MultiShop.Catalog.Entities;
 using MultiShop.Catalog.Settings;
 
@@ -41,9 +41,14 @@ public class GeneralSettingService : IGeneralSettingService
         await _generalSettingCollection.DeleteOneAsync(x => x.GeneralSettingId == id);
     }
 
-    public async Task<List<ResultGeneralSettingDto>> GetAllGeneralSettingsAsync()
+    public async Task<List<ResultGeneralSettingDto>> GetAllGeneralSettingsAsync(int? settingCategoryId = null)
     {
-        var generalSettings = await _generalSettingCollection.Find(x => true).ToListAsync();
+        var filter = Builders<GeneralSetting>.Filter.Empty;
+
+        if (settingCategoryId.HasValue)
+            filter = Builders<GeneralSetting>.Filter.Eq(x => x.SettingCategoryId, settingCategoryId.Value);
+
+        var generalSettings = await _generalSettingCollection.Find(filter).ToListAsync();
 
         return _mapper.Map<List<ResultGeneralSettingDto>>(generalSettings);
     }

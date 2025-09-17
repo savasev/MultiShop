@@ -1,10 +1,14 @@
-﻿namespace MultiShop.Catalog.DTOs.CategoryDtos;
+﻿namespace MultiShop.Catalog.Dtos.CategoryDtos;
 
 public class GetByIdCategoryDto
 {
+    #region Properties
+
     public string CategoryId { get; set; }
 
     public string CategoryName { get; set; }
 
     public string ImageUrl { get; set; }
+
+    #endregion
 }
