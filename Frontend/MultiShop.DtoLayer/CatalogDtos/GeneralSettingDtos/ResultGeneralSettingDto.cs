@@ -12,5 +12,7 @@ public class ResultGeneralSettingDto
 
     public string Value { get; set; }
 
+    public string SettingCategory { get; set; }
+
     #endregion
 }

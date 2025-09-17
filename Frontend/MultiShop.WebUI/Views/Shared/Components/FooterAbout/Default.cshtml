@@ -1,0 +1,35 @@
+﻿@model List<GeneralSettingModel>
+
+@if (Model != null && Model.Any())
+{
+    var title = Model.FirstOrDefault(x => x.Key == "Title")?.Value;
+    var description = Model.FirstOrDefault(x => x.Key == "Description")?.Value;
+    var address = Model.FirstOrDefault(x => x.Key == "Address")?.Value;
+    var email = Model.FirstOrDefault(x => x.Key == "Email")?.Value;
+    var phone = Model.FirstOrDefault(x => x.Key == "Phone")?.Value;
+
+    if (!string.IsNullOrWhiteSpace(title))
+    {
+        <h5 class="text-secondary text-uppercase mb-4">@title</h5>
+    }
+
+    if (!string.IsNullOrWhiteSpace(description))
+    {
+        <p class="mb-4">@description</p>
+    }
+
+    if (!string.IsNullOrWhiteSpace(address))
+    {
+        <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>@address</p>
+    }
+
+    if (!string.IsNullOrWhiteSpace(email))
+    {
+        <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>@email</p>
+    }
+
+    if (!string.IsNullOrWhiteSpace(phone))
+    {
+        <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>@phone</p>
+    }
+}

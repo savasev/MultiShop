@@ -10,6 +10,7 @@ using MultiShop.Catalog.Dtos.ProductDtos;
 using MultiShop.Catalog.Dtos.ProductImageDtos;
 using MultiShop.Catalog.Dtos.SpecialOfferDtos;
 using MultiShop.Catalog.Entities;
+using MultiShop.Catalog.Entities.Enums;
 
 namespace MultiShop.Catalog.Mapping;
 
@@ -64,7 +65,10 @@ public class GeneralMapping : Profile
         CreateMap<Brand, UpdateBrandDto>().ReverseMap();
         CreateMap<Brand, GetByIdBrandDto>().ReverseMap();
 
-        CreateMap<GeneralSetting, ResultGeneralSettingDto>().ReverseMap();
+        CreateMap<GeneralSetting, ResultGeneralSettingDto>()
+            .ForMember(dest => dest.SettingCategory, opt => opt.MapFrom(src =>
+                src.SettingCategoryId.HasValue ? ((SettingCategory)src.SettingCategoryId.Value).ToString() : null))
+            .ReverseMap();
         CreateMap<GeneralSetting, CreateGeneralSettingDto>().ReverseMap();
         CreateMap<GeneralSetting, UpdateGeneralSettingDto>().ReverseMap();
         CreateMap<GeneralSetting, GetByIdGeneralSettingDto>().ReverseMap();
