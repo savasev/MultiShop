@@ -3,6 +3,7 @@ using MultiShop.Catalog.DTOs.BrandDtos;
 using MultiShop.Catalog.DTOs.CategoryDtos;
 using MultiShop.Catalog.DTOs.FeatureDtos;
 using MultiShop.Catalog.DTOs.FeatureSliderDtos;
+using MultiShop.Catalog.DTOs.GeneralSettingDtos;
 using MultiShop.Catalog.DTOs.OfferDiscountDtos;
 using MultiShop.Catalog.DTOs.ProductDetailDtos;
 using MultiShop.Catalog.DTOs.ProductDtos;
@@ -62,5 +63,10 @@ public class GeneralMapping : Profile
         CreateMap<Brand, CreateBrandDto>().ReverseMap();
         CreateMap<Brand, UpdateBrandDto>().ReverseMap();
         CreateMap<Brand, GetByIdBrandDto>().ReverseMap();
+
+        CreateMap<GeneralSetting, ResultGeneralSettingDto>().ReverseMap();
+        CreateMap<GeneralSetting, CreateGeneralSettingDto>().ReverseMap();
+        CreateMap<GeneralSetting, UpdateGeneralSettingDto>().ReverseMap();
+        CreateMap<GeneralSetting, GetByIdGeneralSettingDto>().ReverseMap();
     }
 }
