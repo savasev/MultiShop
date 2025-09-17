@@ -1,0 +1,37 @@
+﻿@model List<GeneralSettingModel>
+
+@if (Model != null && Model.Any())
+{
+    var title = Model.FirstOrDefault(s => s.Key == "Title")?.Value ?? "Follow Us";
+    var twitter = Model.FirstOrDefault(s => s.Key == "Twitter")?.Value;
+    var facebook = Model.FirstOrDefault(s => s.Key == "Facebook")?.Value;
+    var linkedin = Model.FirstOrDefault(s => s.Key == "LinkedIn")?.Value;
+    var instagram = Model.FirstOrDefault(s => s.Key == "Instagram")?.Value;
+
+    if (!string.IsNullOrWhiteSpace(title))
+    {
+        <h6 class="text-secondary text-uppercase mt-4 mb-3">@title</h6>
+    }
+
+    <div class="d-flex">
+        @if (!string.IsNullOrWhiteSpace(twitter))
+        {
+            <a class="btn btn-primary btn-square mr-2" href="@twitter"><i class="fab fa-twitter"></i></a>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(facebook))
+        {
+            <a class="btn btn-primary btn-square mr-2" href="@facebook"><i class="fab fa-facebook-f"></i></a>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(linkedin))
+        {
+            <a class="btn btn-primary btn-square mr-2" href="@linkedin"><i class="fab fa-linkedin-in"></i></a>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(instagram))
+        {
+            <a class="btn btn-primary btn-square" href="@instagram"><i class="fab fa-instagram"></i></a>
+        }
+    </div>
+}
